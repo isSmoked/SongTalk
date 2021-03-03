@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<properties>
+		<!-- 계정 테이블 -->
+		<property name="stMemberTable" value="st_member_table"/>
+		<property name="userid" value="userid"/>
+		<property name="password" value="password"/>
+		<property name="nickname" value="nickname"/>
+		<property name="email" value="email"/>
+		
+		<!-- 메시지 테이블 -->
+		<property name="stMSGTable" value="st_msg_table"/>
+		<property name="sender" value="sender"/>
+		<property name="receiver" value="receiver"/>
+		<property name="content" value="content"/>
+		
+		<!-- 채팅방 테이블 -->
+		<property name="stRoomTable" value="st_room_table"/>
+		<property name="roomUser" value="room_user"/>
+		<property name="roomTitle" value="room_title"/>
+		<property name="roomContent" value="room_content"/>
+		
+	</properties>
+	
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<package name="spring.project.songtalk.domain"/>
+	</typeAliases>
+	
+</configuration>
