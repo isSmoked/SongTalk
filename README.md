@@ -5,7 +5,10 @@
    테이블 관리
 
 2021-03-04
+   놀았다
+   
+2021-03-05
    테이블 수정(+ trigger, sequence)
-   기본기능 적용(vo-mapper-dao-service-controller)
+   member > 기본기능 적용(vo-mapper-dao-service-controller)
    
 
