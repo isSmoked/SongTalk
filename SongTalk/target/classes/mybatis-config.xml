@@ -7,22 +7,27 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<properties>
 		<!-- 계정 테이블 -->
 		<property name="stMemberTable" value="st_member_table"/>
-		<property name="userid" value="userid"/>
-		<property name="password" value="password"/>
-		<property name="nickname" value="nickname"/>
-		<property name="email" value="email"/>
+		<property name="memberUserid" value="member_userid"/>
+		<property name="memberPassword" value="member_password"/>
+		<property name="memberNickname" value="member_nickname"/>
+		<property name="memberEmail" value="member_eail"/>
+		<property name="memberBno" value="member_bno"/>
 		
 		<!-- 메시지 테이블 -->
 		<property name="stMSGTable" value="st_msg_table"/>
-		<property name="sender" value="sender"/>
-		<property name="receiver" value="receiver"/>
-		<property name="content" value="content"/>
+		<property name="msgSender" value="msg_sender"/>
+		<property name="msgReceiver" value="msg_receiver"/>
+		<property name="msgContent" value="msg_content"/>
+		<property name="msgDate" value="msg_date"/>
+		<property name="msgBno" value="msg_bno"/>
+		<property name="msgRoom" value="msg_room"/>
 		
 		<!-- 채팅방 테이블 -->
 		<property name="stRoomTable" value="st_room_table"/>
 		<property name="roomUser" value="room_user"/>
 		<property name="roomTitle" value="room_title"/>
 		<property name="roomContent" value="room_content"/>
+		<property name="roomBno" value="room_bno"/>
 		
 	</properties>
 	
