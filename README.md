@@ -11,4 +11,7 @@
    테이블 수정(+ trigger, sequence)
    member > 기본기능 적용(vo-mapper-dao-service-controller)
    
-
+2021-03-07
+   mapper 수정
+   msg > 기본기능 적용(vo-mapper-dao-service-controller)
+   room > 기본기능 적용(vo-mapper-dao-service-controller)
