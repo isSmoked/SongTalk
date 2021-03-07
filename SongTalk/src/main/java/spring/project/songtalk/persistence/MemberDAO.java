@@ -10,8 +10,8 @@ public interface MemberDAO {
 	public abstract MemberVO login(MemberVO vo);
 	
 	// 정보 수정
-	public abstract int update(MemberVO vo);
+	public abstract int update(int memberBno);
 	
 	// 정보 삭제
-	public abstract int delete(MemberVO vo);
+	public abstract int delete(int memberBno);
 }
