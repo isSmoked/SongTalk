@@ -3,10 +3,12 @@ package spring.project.songtalk.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import spring.project.songtalk.domain.MemberVO;
 import spring.project.songtalk.persistence.MemberDAO;
 
+@Service
 public class MemberServiceImple implements MemberService {
 
 	private static final Logger logger = 
@@ -28,15 +30,15 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	@Override
-	public int update(MemberVO vo) {
+	public int update(int memberBno) {
 		logger.info("update() 호출");
-		return dao.update(vo);
+		return dao.update(memberBno);
 	}
 
 	@Override
-	public int delete(MemberVO vo) {
+	public int delete(int memberBno) {
 		logger.info("delete() 호출");
-		return dao.delete(vo);
+		return dao.delete(memberBno);
 	}
 
 }
