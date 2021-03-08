@@ -56,11 +56,6 @@
 			<beans:ref bean="loginInteceptor" />
 		</interceptor>
 
-		<interceptor>
-			<mapping path="/member/idCheck" />
-			<beans:ref bean="RegisterInterceptor" />
-		</interceptor>
-		
 	</interceptors>
 	
 	<!-- Interceptor 클래스의 인스턴스를 bean으로 관리 -->

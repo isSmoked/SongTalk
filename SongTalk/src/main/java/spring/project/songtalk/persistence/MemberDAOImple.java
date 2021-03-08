@@ -32,15 +32,21 @@ public class MemberDAOImple implements MemberDAO {
 	}
 
 	@Override
-	public int update(int memberBno) {
+	public int update(MemberVO vo) {
 		logger.info("update() 호출");
-		return sqlSession.update(NAMESPACE + ".update", memberBno);
+		return sqlSession.update(NAMESPACE + ".update", vo);
 	}
 
 	@Override
-	public int delete(int memberBno) {
+	public int delete(String userid) {
 		logger.info("delete() 호출");
-		return sqlSession.delete(NAMESPACE + ".delete", memberBno);
+		return sqlSession.delete(NAMESPACE + ".delete", userid);
+	}
+	
+	@Override
+	public MemberVO select(String userid) {
+		logger.info("select() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".select", userid);
 	}
 
 }
