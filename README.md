@@ -15,3 +15,8 @@
    mapper 수정
    msg > 기본기능 적용(vo-mapper-dao-service-controller)
    room > 기본기능 적용(vo-mapper-dao-service-controller)
+
+2021-03-08
+   membercontroller 작성
+   main.jsp 작성
+   member-mapper 수정
