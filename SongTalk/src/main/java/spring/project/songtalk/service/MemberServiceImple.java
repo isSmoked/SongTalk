@@ -30,15 +30,21 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	@Override
-	public int update(int memberBno) {
+	public int update(MemberVO vo) {
 		logger.info("update() 호출");
-		return dao.update(memberBno);
+		return dao.update(vo);
 	}
 
 	@Override
-	public int delete(int memberBno) {
+	public int delete(String userid) {
 		logger.info("delete() 호출");
-		return dao.delete(memberBno);
+		return dao.delete(userid);
+	}
+	
+	@Override
+	public MemberVO read(String userid) {
+		logger.info("select() 호출");
+		return dao.select(userid);
 	}
 
 }

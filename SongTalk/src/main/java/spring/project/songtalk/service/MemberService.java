@@ -10,8 +10,11 @@ public interface MemberService {
 	public abstract MemberVO login(MemberVO vo);
 	
 	// 정보 수정
-	public abstract int update(int memberBno);
+	public abstract int update(MemberVO vo);
 	
 	// 정보 삭제
-	public abstract int delete(int memberBno);
+	public abstract int delete(String userid);
+	
+	// 회원 정보 가져오기
+	public abstract MemberVO read(String userid);
 }

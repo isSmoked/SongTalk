@@ -23,15 +23,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 정보 수정 -->
 	<update id="update">
 		update ${stMemberTable}
-		set ${memberUserid} = #{memberUserid}, ${memberPassword} = #{memberPassword},
-			${memberNickname} = #{memberNickname}, ${memberEmail} = #{memberEmail}
-		where ${memberBno} = #{memberBno}
+		set ${memberPassword} = #{memberPassword},
+			${memberNickname} = #{memberNickname}, 
+			${memberEmail} = #{memberEmail}
+		where ${memberUserid} = #{memberUserid}
 	</update>
 	
 	<!-- 회원 탈퇴 -->
 	<delete id="delete">
 		delete from ${stMemberTable}
-		where ${memberBno} = #{memberBno}
+		where ${memberUserid} = #{memberUserid}
 	</delete>
+	
+	<!-- 회원 정보 가져오기 -->
+	<select id="select">
+		select * from ${stMemberTable}
+		where ${memberUserid} = #{memberUserid}
+	</select>
 	
 </mapper>
