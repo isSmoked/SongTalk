@@ -41,9 +41,7 @@
 	<h1>메인 페이지</h1>
 	
 	<!-- 로그인 -->
-	<form action="login" method="get">
-		<a href="login"><input type="button" value="login"></a>
-	</form>
+	<a href="member/login"><input type="button" value="login"></a>
 	
 </body>
 </html>

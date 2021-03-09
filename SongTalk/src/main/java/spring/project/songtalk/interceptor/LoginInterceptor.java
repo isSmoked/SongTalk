@@ -35,9 +35,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		// - null이면(로그인 실패) 메인 페이지로 이동
 
 		String loginId = (String) modelAndView.getModel().get("result");
-		String part = (String) modelAndView.getModel().get("part");
 		logger.info("=== LoginInterceptor postHandle loginId = " + loginId);
-		logger.info("=== LoginInterceptor postHandle part = " + part);
 
 		if (loginId != null) {
 			int blacklist = (int) modelAndView.getModel().get("blacklist");
@@ -45,8 +43,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("로그인 성공");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId", loginId);
-			session.setAttribute("part", part);
-			session.setAttribute("blacklist", blacklist);
 			session.setAttribute("loginResult", "success");
 			// 세션에서 목적 url 가져오기
 			String dest = (String) session.getAttribute("dest");
@@ -62,14 +58,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				// 로그인 / 회원가입 경로 제거
 				if (ip.contains("member/login") || ip.contains("member/register") || ip == null) {
 					logger.info("로그인 / 회원가입 커팅");
-					response.sendRedirect("/prj/RecBoard/main");
+					response.sendRedirect("/songtalk/member/main");
 				} else if (dest != null) {
 					logger.info("그 외의 경로 pass");
 					response.sendRedirect(dest);
 				}
 				
 			} else {	// 처음화면에서 로그인했을때
-				response.sendRedirect("/prj/RecBoard/main");
+				response.sendRedirect("/songtalk/member/main");
 			}
 			
 			
@@ -77,7 +73,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("로그인 실패");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginResult", "fail");
-			response.sendRedirect("/prj/member/login");
+			response.sendRedirect("/songtalk/member/login");
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	} // postHandle
