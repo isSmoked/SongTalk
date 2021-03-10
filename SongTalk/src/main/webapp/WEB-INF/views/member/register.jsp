@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>REGISTER</title>
+
+<script type="text/javascript">
+	
+</script>
+
 </head>
 <body>
 	<h2>회원가입</h2>
@@ -14,6 +19,7 @@
 	<form action="register" method="POST">
 		 아이디 : <input type="text" name="memberUserid">
 		 비밀번호 : <input type="password" name="memberPassword">
+		 비밀번호 확인 : <input type="password" id="memberPasswordTest">
 		 이메일 : <input type="email" name="memberEmail">
 		 
 		 <!-- TODO : AJAX 구현하기 -->

@@ -43,5 +43,11 @@
 	<!-- 로그인 -->
 	<a href="member/login"><input type="button" value="login"></a>
 	
+	<c:if test="${loginId ne null }">
+		<a href="member/HOME"><input type="button" value="전체 채팅방"></a>
+	</c:if>
+	
+	<a href="member/HOME"><input type="button" value="전체 채팅방"></a>
+	
 </body>
 </html>

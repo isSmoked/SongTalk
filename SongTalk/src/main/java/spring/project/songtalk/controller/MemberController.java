@@ -26,17 +26,23 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	/* È¸¿ø°¡ÀÔ, ·Î±×ÀÎ, Á¤º¸¼öÁ¤, Á¤º¸»èÁ¦(°³ÀÎÁ¤º¸) */
+	/* íšŒì›ê°€ì…, ë¡œê·¸ì¸, ì •ë³´ìˆ˜ì •, ì •ë³´ì‚­ì œ(ê°œì¸ì •ë³´) */
 	
-	/* È¸¿ø°¡ÀÔ */ // ---------------------------------------------
+	/* ì±„íŒ… ë©”ì¸í˜ì´ì§€ */
+	@GetMapping("/HOME")
+	public void HOMEGET() {
+		logger.info("HOME() í˜¸ì¶œ");
+	}
+	
+	/* íšŒì›ê°€ì… */ // ---------------------------------------------
 	@GetMapping("/register")
 	public void registerGET() {
-		logger.info("registerGET() È£Ãâ");
+		logger.info("registerGET() í˜¸ì¶œ");
 	} // end registerGET()
 	
 	@PostMapping("/register")
 	public String registerPOST(MemberVO vo, RedirectAttributes reAttr, HttpServletRequest request) {
-		logger.info("registerPOST() È£Ãâ");
+		logger.info("registerPOST() í˜¸ì¶œ");
 		logger.info(vo.toString());
 		
 		int result = memberService.create(vo);
@@ -51,10 +57,10 @@ public class MemberController {
 	} // end registerPOST()
 	// -----------------------------------------------------------
 	
-	/* ·Î±×ÀÎ */ // -----------------------------------------------
+	/* ë¡œê·¸ì¸ */ // -----------------------------------------------
 	@GetMapping("/login")
 	public void loginGET(Model model, HttpServletRequest request) {
-		logger.info("loginGET() È£Ãâ");
+		logger.info("loginGET() í˜¸ì¶œ");
 		String referer = request.getHeader("referer");
 		logger.info("loginGET() - referer : " + referer);
 		
@@ -64,7 +70,7 @@ public class MemberController {
 	
 	@PostMapping("/login-post")
 	public void loginPOST (MemberVO vo, Model model, HttpServletRequest request) {
-		logger.info("loginPOST() È£Ãâ");
+		logger.info("loginPOST() í˜¸ì¶œ");
 		MemberVO mvo = memberService.login(vo);
 		logger.info("mvo : " + mvo);
 		
@@ -79,12 +85,12 @@ public class MemberController {
 	} // end loginPOST()
 	// ----------------------------------------------------------
 	
-	/* Á¤º¸¼öÁ¤ */ // ---------------------------------------------
+	/* ì •ë³´ìˆ˜ì • */ // ---------------------------------------------
 	@GetMapping("/update")
 	public void updateGET(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String userid = (String)session.getAttribute("userid");
-		logger.info("updateGET() È£Ãâ userid : " + userid);
+		logger.info("updateGET() í˜¸ì¶œ userid : " + userid);
 		
 		MemberVO vo = memberService.read(userid);
 		model.addAttribute("memberVO", vo);
@@ -92,25 +98,25 @@ public class MemberController {
 	
 	@PostMapping("/update-post")
 	public String updatePOST(MemberVO vo, HttpServletRequest request, RedirectAttributes reAttr) {
-		logger.info("updatePOST() È£Ãâ");
+		logger.info("updatePOST() í˜¸ì¶œ");
 		int result = memberService.update(vo);
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("update_result", "success");
 			return "redirect:/member/main";
 		} else {
-			logger.info("update ½ÇÆĞ");
+			logger.info("update ì‹¤íŒ¨");
 			reAttr.addAttribute("update_result", "success");
-			// TODO : ¸ŞÀÎ¿¡¼­ toast ¾Ë¸²Ã³¸®
+			// TODO : ë©”ì¸ì—ì„œ toast ì•Œë¦¼ì²˜ë¦¬
 			return "redirect:/member/main";
 		}
 	} // end updatePOST()
 	// ----------------------------------------------------------
 	
 	
-	/* Á¤º¸»èÁ¦ */ // ---------------------------------------------
+	/* ì •ë³´ì‚­ì œ */ // ---------------------------------------------
 	public String delete(RedirectAttributes reAttr, HttpServletRequest request) {
-		logger.info("delete() È£Ãâ");
+		logger.info("delete() í˜¸ì¶œ");
 		HttpSession session = request.getSession();
 		String userid = (String)session.getAttribute("userid");
 		

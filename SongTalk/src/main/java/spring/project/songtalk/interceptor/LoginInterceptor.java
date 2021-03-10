@@ -15,11 +15,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("===== LoginInterceptor preHandle È£Ãâ");
-		// login.jsp¿¡¼­ form action="login-post"·Î ÀÌµ¿ÇÏ±â Àü¿¡
-		// µ¥ÀÌÅÍ¸¦ °¡·ÎÃ¤¼­ ¼¼¼Ç¿¡ ±× Á¤º¸¸¦ ÀúÀå
+		logger.info("===== LoginInterceptor preHandle í˜¸ì¶œ");
+		
 		String url = request.getParameter("targetUrl");
-		logger.info("¸ñÀûÁö url : " + url);
+		// login.jspì—ì„œ form action="login-post"ë¡œ ì´ë™í•˜ê¸° ì „ì—
+		// ë°ì´í„°ë¥¼ ê°€ë¡œì±„ì„œ ì„¸ì…˜ì— ê·¸ ì •ë³´ë¥¼ ì €ì¥
+		logger.info("ëª©ì ì§€ url : " + url);
 		if (url != null && url != "") {
 			request.getSession().setAttribute("dest", url);
 		}
@@ -29,24 +30,24 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		logger.info("===== LoginInterceptor postHandle È£Ãâ");
-		// model °´Ã¼ÀÇ loginResult ¼Ó¼º°ª(userid¿Í µ¿ÀÏ)À» È®ÀÎ
-		// - nullÀÌ ¾Æ´Ï¸é(·Î±×ÀÎ ¼º°ø) session °´Ã¼¿¡ loingId ¼Ó¼º Ãß°¡, ÆäÀÌÁö ÀÌµ¿
-		// - nullÀÌ¸é(·Î±×ÀÎ ½ÇÆĞ) ¸ŞÀÎ ÆäÀÌÁö·Î ÀÌµ¿
-
+		logger.info("===== LoginInterceptor postHandle í˜¸ì¶œ");
+		// model ê°ì²´ì˜ loginResult ì†ì„±ê°’(useridì™€ ë™ì¼)ì„ í™•ì¸
+		// - nullì´ ì•„ë‹ˆë©´(ë¡œê·¸ì¸ ì„±ê³µ) session ê°ì²´ì— loingId ì†ì„± ì¶”ê°€, í˜ì´ì§€ ì´ë™
+		// - nullì´ë©´(ë¡œê·¸ì¸ ì‹¤íŒ¨) ë©”ì¸ í˜ì´ì§€ë¡œ ì´ë™
+		
 		String loginId = (String) modelAndView.getModel().get("result");
 		logger.info("=== LoginInterceptor postHandle loginId = " + loginId);
 
 		if (loginId != null) {
 			int blacklist = (int) modelAndView.getModel().get("blacklist");
 			logger.info("=== LoginInterceptor postHandle blacklist = " + blacklist);
-			logger.info("·Î±×ÀÎ ¼º°ø");
+			logger.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId", loginId);
 			session.setAttribute("loginResult", "success");
-			// ¼¼¼Ç¿¡¼­ ¸ñÀû url °¡Á®¿À±â
+			// ì„¸ì…˜ì—ì„œ ëª©ì  url ê°€ì ¸ì˜¤ê¸°
 			String dest = (String) session.getAttribute("dest");
-			logger.info("*********** °æ·Î : " + dest);
+			logger.info("*********** ê²½ë¡œ : " + dest);
 			int count = dest.split("/").length;
 			logger.info("count = " + count);
 			
@@ -55,22 +56,22 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				String ip = dest.split("/")[4] + "/" + dest.split("/")[5]; 
 				logger.info("ip : " + ip);
 				
-				// ·Î±×ÀÎ / È¸¿ø°¡ÀÔ °æ·Î Á¦°Å
+				// ë¡œê·¸ì¸ / íšŒì›ê°€ì… ê²½ë¡œ ì œê±°
 				if (ip.contains("member/login") || ip.contains("member/register") || ip == null) {
-					logger.info("·Î±×ÀÎ / È¸¿ø°¡ÀÔ Ä¿ÆÃ");
+					logger.info("ë¡œê·¸ì¸ / íšŒì›ê°€ì… ì»¤íŒ…");
 					response.sendRedirect("/songtalk/member/main");
 				} else if (dest != null) {
-					logger.info("±× ¿ÜÀÇ °æ·Î pass");
+					logger.info("ê·¸ ì™¸ì˜ ê²½ë¡œ pass");
 					response.sendRedirect(dest);
 				}
 				
-			} else {	// Ã³À½È­¸é¿¡¼­ ·Î±×ÀÎÇßÀ»¶§
+			} else {	// ì²˜ìŒí™”ë©´ì—ì„œ ë¡œê·¸ì¸í–ˆì„ë•Œ
 				response.sendRedirect("/songtalk/member/main");
 			}
 			
 			
 		} else {
-			logger.info("·Î±×ÀÎ ½ÇÆĞ");
+			logger.info("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginResult", "fail");
 			response.sendRedirect("/songtalk/member/login");

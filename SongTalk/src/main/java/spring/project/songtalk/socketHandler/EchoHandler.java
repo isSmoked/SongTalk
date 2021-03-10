@@ -15,37 +15,39 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 @Component
 public class EchoHandler extends TextWebSocketHandler{
-	// ·Î±×ÀÎ ÇÑ ÀüÃ¼
+	// ë¡œê·¸ì¸ í•œ ì „ì²´
 	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
-	/* TODO : ¿©±â¼­ ÇØ´ç ¸ğÀÓ¿¡ °ü·ÃµÈ »ç¶÷µé¸¸ °Ë»öÇØ¼­ ¸Ş½ÃÁö¸¦ º¸³»¾ß ÇÑ´Ù. */
+	
+	// ëŒ€í™”ë°©
+	// ???
 	
 	private static final Logger logger =
 			LoggerFactory.getLogger(EchoHandler.class);
 	
-	// 1 ´ë 1
+	// 1 ëŒ€ 1
 	Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
 	
-	// Å¬¶óÀÌ¾ğÆ®°¡ ¼­¹ö·Î ¿¬°á½Ã
+	// í´ë¼ì´ì–¸íŠ¸ê°€ ì„œë²„ë¡œ ì—°ê²°ì‹œ
 		@Override
 		public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-			logger.info("afterConnectionEstablished() È£Ãâ");
+			logger.info("afterConnectionEstablished() í˜¸ì¶œ");
 			
-			String userid = getMemberId(session); // Á¢¼ÓÇÑ À¯ÀúÀÇ http¼¼¼ÇÀ» Á¶È¸ÇÏ¿© id¸¦ ¾ò´Â ÇÔ¼ö
-			if (userid != null) {	// ·Î±×ÀÎ °ªÀÌ ÀÖ´Â °æ¿ì¸¸
-				logger.info("·Î±×ÀÎ °ªÀÌ ÀÖ¾î¼­ ·Î±×ÀÎµÊ! userid = " + userid);
-				users.put(userid, session);   // ·Î±×ÀÎÁß °³º°À¯Àú ÀúÀå
+			String userid = getMemberId(session); // ì ‘ì†í•œ ìœ ì €ì˜ httpì„¸ì…˜ì„ ì¡°íšŒí•˜ì—¬ idë¥¼ ì–»ëŠ” í•¨ìˆ˜
+			if (userid != null) {	// ë¡œê·¸ì¸ ê°’ì´ ìˆëŠ” ê²½ìš°ë§Œ
+				logger.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾î¼­ ï¿½Î±ï¿½ï¿½Îµï¿½! userid = " + userid);
+				users.put(userid, session);   // ë¡œê·¸ì¸ì¤‘ ê°œë³„ìœ ì € ì €ì¥
 				sessions.add(session);
 			}
 		} // end afterConnectionEstablished()
 		
-		// Å¬¶óÀÌ¾ğÆ®°¡ Data Àü¼Û ½Ã
+		// í´ë¼ì´ì–¸íŠ¸ê°€ Data ì „ì†¡ ì‹œ
 		@Override
 		protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-			logger.info("***** handleTextMessage() È£­Œ message : " + message.getPayload());
-			// protocol : cmd , ´ñ±ÛÀÛ¼ºÀÚ, °Ô½Ã±Û ÀÛ¼ºÀÚ , seq (reply , user2 , user1 , 12)
-			String msg = message.getPayload();
+			logger.info("***** handleTextMessage() í˜¸ì¶œ message : " + message.getPayload());
+			// protocol : cmd , ë°œì‹ ì¸, ìˆ˜ì‹ ì¸, ëŒ€í™”ë°© ì´ë¦„
+			String msg = message.getPayload(); // ï¿½Ş¾Æ¿ï¿½ ï¿½Ş½ï¿½ï¿½ï¿½
 			
-			// µé¾î¿À´Â ¸Ş½ÃÁö > attend,zz,aaa,42,1
+			// ë“¤ì–´ì˜¤ëŠ” ë©”ì‹œì§€ > ???
 			String[] strs = msg.split("[*]");
 
 			for (int i = 0; i < strs.length; i++) {
@@ -53,139 +55,94 @@ public class EchoHandler extends TextWebSocketHandler{
 			}
 			
 			if (strs != null && strs.length == 5) {
-				String cmd = strs[0];		// ¸í·É¾î - ³ªÁß¿¡ ´Ù¸¥ °æ·Î¿¡¼­ ´Ù¸¥ ±â´ÉÀÇ ¾Ë¸²À» Ãß°¡ÇÒ¶§, ±¸ºĞÀÇ ¿ëµµ
-				String receiver = strs[1];	// ¼ö½ÅÇÏ´Â ÀÌ¿ëÀÚÀÇ id 
-				String waiter[] = receiver.split(",");
+				String cmd = strs[0];		// ëª…ë ¹ì–´ - ë‚˜ì¤‘ì— ë‹¤ë¥¸ ê²½ë¡œì—ì„œ ë‹¤ë¥¸ ê¸°ëŠ¥ì˜ ì•Œë¦¼ì„ ì¶”ê°€í• ë•Œ, êµ¬ë¶„ì˜ ìš©ë„
+				String caller = strs[1];	// ìˆ˜ì‹ í•˜ëŠ” ì´ìš©ìì˜ id 
+				String receiver = strs[2];	// ë°œì‹ í•˜ëŠ” ì´ìš©ìì˜ id 
+				String title = strs[3];		// ëŒ€í™”ë°© ì´ë¦„
 				
 				
-				String caller = strs[2];	// È£ÃâÇÏ´Â ÀÌ¿ëÀÚÀÇ id
-				
-				// ¾Ë¸²À» ´©¸£¸é ÇØ´çÆäÀÌÁö·Î Á¢±ÙÇÏ±âÀ§ÇØ ÇÊ¿äÇÑ ¸Å°³º¯¼öµéÀ» Ãß°¡ -> detail-admin.jsp
-				/* bno, page Àü¼Û! */
-				String bno_seq = strs[3];
-				String page_seq = strs[4];
-				
-				// Âü¼® Alert
-				if (cmd.equals("attend")) {				// ÀÌ¿ëÀÚ°¡ ¸ğÀÓ¿¡ Âü¼®ÇÒ ¶§ (cmd = attend)
-					for (int i = 0; i < waiter.length; i++) {
-						logger.info("attend - for()");
-						// ÀÛ¼ºÀÚ°¡ ·Î±×ÀÎ ÇØ¼­ ÀÖ´Ù¸é
-						WebSocketSession boardWriterSession = users.get(waiter[i]);
-						
-						// ¿©±â ½ÇÇà°úÁ¤¿¡¼­ ¿À·ù
-						if (boardWriterSession != null) {
-							TextMessage tmpMsg = new TextMessage(caller + "´ÔÀÌ " + 
-									"<div><a type='external' href='/prj/studyBoard/detail-admin?bno=" + bno_seq + "&page=" + page_seq + "'>" + bno_seq + "¹ø ¸ğÀÓ¿¡ Âü°¡½ÅÃ»À» ÇÏ¿´½À´Ï´Ù. </a></div>");
-							logger.info("******** º¸³»·Á´Â ¸Ş¼¼Áö : " + tmpMsg);
-							boardWriterSession.sendMessage(tmpMsg);
-						} else {
-							logger.info(waiter[i] + "´ÔÀº ·Î±×¾Æ¿ô Áß ÀÔ´Ï´Ù."); // ·Î±×¾Æ¿ô ÁßÀÌ¸é ÂÊÁöÇÔ¿¡ ½×ÀÌµµ·Ï ¼³Á¤!
-						}
-					}
-				} else if (cmd.equals("attendOK")) {	// ÀÌ¿ëÀÚ¸¦ ¸ğÀÓ¿¡ Âü¼® ½ÃÅ³¶§ (cmd = attendOK)
-					
-					logger.info("attend**OK - for()");
+				// ì´ˆëŒ€ Alert
+				if (cmd.equals("invite")) {				// ëŒ€í™”ë°©ì— ì´ˆëŒ€ë  ë•Œ (cmd = invite)
+					logger.info("invite() í˜¸ì¶œ");
 					WebSocketSession boardWriterSession = users.get(receiver);
 					
 					if (boardWriterSession != null) {
 						TextMessage tmpMsg = new TextMessage(
-								"<div><a type='external' href='/prj/studyBoard/detail?bno=" + bno_seq + "&page=" + page_seq + "'>" + bno_seq + "¹ø ¸ğÀÓ¿¡ Âü°¡ µÇ¾ú½À´Ï´Ù. </a></div>");
-						logger.info("********* º¸³»·Á´Â ¸Ş¼¼Áö : " + tmpMsg);
+								"<div>"
+								+ "<a type='external' href='songtalk/???/???'>"
+								+ title + " ëŒ€í™”ë°©ì˜ " + caller + "ë‹˜ì´ ì´ˆëŒ€í•˜ì˜€ìŠµë‹ˆë‹¤."
+								+ "</a></div>"
+								);
+						
+						logger.info("ë³´ë‚´ë ¤ëŠ” ë©”ì‹œì§€ : " + tmpMsg);
 						boardWriterSession.sendMessage(tmpMsg);
 					} else {
-						logger.info(waiter + "´ÔÀº ·Î±×¾Æ¿ô ÁßÀÔ´Ï´Ù.");
+						logger.info(receiver + " - ë¡œê·¸ì•„ì›ƒ");
 					}
 					
-				} else if (cmd.equals("chatMsg")) {
+				// ëŒ€í™”ë°© ì±„íŒ…
+				} else if (cmd.equals("roomCHAT")) {
+					// caller, receiver[], title(roomName)
+					logger.info("roomCHAT() í˜¸ì¶œ");
 					
-					logger.info("chatMsg - for()");
+					String[] roomReceiver = receiver.split(","); // ë°›ëŠ” ì‚¬ëŒ
 					
-					/* ·Î±×ÀÎÁßÀÎ ¸ğµç À¯Àú¿¡°Ô º¸³¾ ¶§ > chatMsg */
+					for (int i = 0; i < roomReceiver.length; i++) {
+						WebSocketSession boardWriterSession = users.get(roomReceiver[i]);
+
+						// message handle
+						String chatMsg = receiver;
+						
+						TextMessage tmpMsg = new TextMessage("roomCHAT," + caller + " ^ " + chatMsg);
+						boardWriterSession.sendMessage(tmpMsg);
+						logger.info("chatMsg(roomCHAT) ì •ìƒì ìœ¼ë¡œ ì „ì†¡ ì™„ë£Œ!");
+					}
+					
+				} else if (cmd.equals("allCHAT")) {
+					/* ë¡œê·¸ì¸ì¤‘ì¸ ëª¨ë“  ìœ ì €ì—ê²Œ ë³´ë‚¼ ë•Œ > allCHAT */
+					// caller , receiver
+					logger.info("allCHAT() í˜¸ì¶œ");
 					
 					for (WebSocketSession sess : sessions) {
 //						
 						// message handle
 						String chatMsg = receiver;
 						
-						sess.sendMessage(new TextMessage("chatMsg," + caller + " ^ " + chatMsg));
-						logger.info("chatMsg Á¤»óÀûÀ¸·Î Àü¼Û ¿Ï·á!");
-					}
-					
-				} else if (cmd.equals("deleteNO")) {
-					
-					logger.info("deleteNO - for()");
-					WebSocketSession boardWriterSession = users.get(receiver);
-					
-					if (boardWriterSession != null) {
-						TextMessage tmpMsg = new TextMessage(
-								"<div><a type='external' href='/prj/studyBoard/detail?bno=" + bno_seq + "&page=" + page_seq + "'>" + bno_seq + "¹ø ¸ğÀÓ¿¡¼­ ÂÑ°Ü³ª°Ô µÇ¾ú½À´Ï´Ù. </a></div>");
-						logger.info("********* º¸³»·Á´Â ¸Ş¼¼Áö : " + tmpMsg);
-						boardWriterSession.sendMessage(tmpMsg);
-					} else {
-						logger.info(waiter + "´ÔÀº ·Î±×¾Æ¿ô ÁßÀÔ´Ï´Ù.");
-					}
-				}
-				
-			} // end str == 5
-			
-			if (strs != null && strs.length == 6) {
-				
-				String cmd = strs[0];		// ¸í·É¾î - ³ªÁß¿¡ ´Ù¸¥ °æ·Î¿¡¼­ ´Ù¸¥ ±â´ÉÀÇ ¾Ë¸²À» Ãß°¡ÇÒ¶§, ±¸ºĞÀÇ ¿ëµµ
-				String receiver = strs[1];	// ¼ö½ÅÇÏ´Â ÀÌ¿ëÀÚÀÇ id 
-				String waiter[] = receiver.split(",");
-				
-				
-				String caller = strs[2];	// È£ÃâÇÏ´Â ÀÌ¿ëÀÚÀÇ id
-				
-				// ¾Ë¸²À» ´©¸£¸é ÇØ´çÆäÀÌÁö·Î Á¢±ÙÇÏ±âÀ§ÇØ ÇÊ¿äÇÑ ¸Å°³º¯¼öµéÀ» Ãß°¡ -> detail-admin.jsp
-				/* bno, page Àü¼Û! */
-				String bno_seq = strs[3];
-				String page_seq = strs[4];
-				String rejectMessage = strs[5]; 
-				
-				
-				if (cmd.equals("attendNO")) { 	// ÀÌ¿ëÀÚ¸¦ ¸ğÀÓ¿¡¼­ Á¦°ÅÇÒ ¶§ (cmd = attendNO)
-					
-					logger.info("attend**NO - for()");
-					WebSocketSession boardWriterSession = users.get(receiver);
-					
-					if (boardWriterSession != null) {
-						TextMessage tmpMsg = new TextMessage(
-								"<div><a type='external' href='/prj/studyBoard/detail?bno=" + bno_seq + "&page=" + page_seq + "'>" + bno_seq + "¹ø ¸ğÀÓ¿¡ [" + rejectMessage + "] »çÀ¯·Î Âü°¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù. </a></div>");
-						logger.info("********* º¸³»·Á´Â ¸Ş¼¼Áö : " + tmpMsg);
-						boardWriterSession.sendMessage(tmpMsg);
-					} else {
-						logger.info(waiter + "´ÔÀº ·Î±×¾Æ¿ô ÁßÀÔ´Ï´Ù.");
+						sess.sendMessage(new TextMessage("allCHAT," + caller + " ^ " + chatMsg));
+						logger.info("chatMsg(allCHAT) ì •ìƒì ìœ¼ë¡œ ì „ì†¡ ì™„ë£Œ!!");
 					}
 				} 
-			}
+				
+			} // end str == 4
+			
+			
 			
 		} // end handleTextMessage()
 		
-		// ¿¬°á ÇØÁ¦µÉ ¶§
+		// ì—°ê²° í•´ì œë  ë•Œ
 		@Override
 		public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 			logger.info("afterConnectionClosed " + session + ", " + status);
 			String senderId = getMemberId(session);
-			if(senderId != null) {	// ·Î±×ÀÎ °ªÀÌ ÀÖ´Â °æ¿ì¸¸
-				logger.info("·Î±×ÀÎ °ªÀÌ ÀÖ¾î¼­ ·Î±×¾Æ¿ô°¡´É ! senderId : " + senderId + " ¿¬°á Á¾·áµÊ");
+			if(senderId != null) {	// ë¡œê·¸ì¸ ê°’ì´ ìˆëŠ” ê²½ìš°ë§Œ
+				logger.info("ë¡œê·¸ì¸ ê°’ì´ ìˆì–´ì„œ ë¡œê·¸ì•„ì›ƒê°€ëŠ¥ ! senderId : \" + senderId + \" ì—°ê²° ì¢…ë£Œë¨");
 				users.remove(senderId);
 			}
 			sessions.remove(session);
 		} // end afterConnectionClosed()
 		
-		// ¿¡·¯ ¹ß»ı½Ã
+		// ì—ëŸ¬ ë°œìƒì‹œ
 		@Override
 		public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-			logger.info("error ¹ß»ı! : " + session.getId() + " ÀÍ¼Á¼Ç ¹ß»ı: " + exception.getMessage());
+			logger.info("error ë°œìƒ! : " + session.getId() + "ìµì…‰ì…˜ ë°œìƒ" + exception.getMessage());
 
 		} // end handleTramsportError()
 		
-		// À¥¼ÒÄÏ¿¡ id °¡Á®¿À±â
-	    // Á¢¼ÓÇÑ À¯ÀúÀÇ http¼¼¼ÇÀ» Á¶È¸ÇÏ¿© id¸¦ ¾ò´Â ÇÔ¼ö
+		// ì›¹ì†Œì¼“ì— id ê°€ì ¸ì˜¤ê¸°
+	    // ì ‘ì†í•œ ìœ ì €ì˜ httpì„¸ì…˜ì„ ì¡°íšŒí•˜ì—¬ idë¥¼ ì–»ëŠ” í•¨ìˆ˜
 		private String getMemberId(WebSocketSession session) {
 			Map<String, Object> httpSession = session.getAttributes();
-			String userid = (String) httpSession.get("loginId"); // ¼¼¼Ç¿¡ ÀúÀåµÈ m_id ±âÁØ Á¶È¸
+			String userid = (String) httpSession.get("loginId"); // ì„¸ì…˜ì— ì €ì¥ëœ m_id ê¸°ì¤€ ì¡°íšŒ
 			return userid == null? null: userid;
 		} // end getMemberId()
 		
