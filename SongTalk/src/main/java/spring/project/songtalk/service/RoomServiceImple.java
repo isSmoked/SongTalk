@@ -44,9 +44,9 @@ public class RoomServiceImple implements RoomService {
 	}
 	
 	@Override
-	public int updateContent(int roomBno) {
+	public int updateContent(RoomVO vo) {
 		logger.info("updateContent() 호출");
-		return dao.updateContent(roomBno);
+		return dao.updateContent(vo);
 	}
 	
 	@Override

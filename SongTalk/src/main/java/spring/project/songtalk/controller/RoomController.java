@@ -25,20 +25,20 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-	/* ì „ì²´ì±„íŒ…ë°©, ë‚˜ì˜ ì±„íŒ…ë°© */
+	/* ÀüÃ¼Ã¤ÆÃ¹æ, ³ªÀÇ Ã¤ÆÃ¹æ */
 	/* list, detail, update, delete */
 	
-	/* ì±„íŒ… ë©”ì¸í˜ì´ì§€ */
+	/* Ã¤ÆÃ ¸ŞÀÎÆäÀÌÁö */
 	@GetMapping("/HOME")
 	public void HOMEGET() {
-		logger.info("HOME() í˜¸ì¶œ");
+		logger.info("HOME() È£Ãâ");
 		System.out.println("aaaaa");
 	}
 	
-	/* ì±„íŒ…ë°© ê°œì„¤ */
+	/* Ã¤ÆÃ¹æ °³¼³ */
 	@PostMapping("/register")
 	public String registerPOST(RoomVO vo, RedirectAttributes reAttr, HttpServletRequest request ) {
-		logger.info("registerPOST() í˜¸ì¶œ");
+		logger.info("registerPOST() È£Ãâ");
 		logger.info(vo.toString());
 		
 		vo.setRoomContent(" ");
@@ -54,17 +54,17 @@ public class RoomController {
 		}
 	} // end registerPOST()
 	
-	/* ì „ì²´ ì±„íŒ…ë°© */
+	/* ÀüÃ¼ Ã¤ÆÃ¹æ */
 	@GetMapping("/allDetail")
 	public void detailALLGET(Model model) {
-		logger.info("allDetailGET() í˜¸ì¶œ");
+		logger.info("allDetailGET() È£Ãâ");
 		
 	} // end detailALL()
 	
-	/* íŠ¹ì • ëŒ€í™”ë°© */
+	/* Æ¯Á¤ ´ëÈ­¹æ */
 	@GetMapping("/roomDetail")
 	public String detailROOMGET(Integer roomBno, Model model) {
-		logger.info("detailROOMGET() í˜¸ì¶œ");
+		logger.info("detailROOMGET() È£Ãâ");
 		
 		RoomVO vo = roomService.read(roomBno);
 		model.addAttribute("roomVO", vo);
@@ -72,35 +72,21 @@ public class RoomController {
 		return "redirect:/chat/roomDetail?bno=" + roomBno;
 	} // end detailROOMGET()
 	
-	/* ì±—ë´‡ë°© */
+	/* Ãªº¿¹æ */
 	
-	/* ìˆ˜ì • */
+	/* ¼öÁ¤ */
 	@GetMapping("update")
 	public void updateGET(Model model, Integer roomBno) {
-		logger.info("updateGET() í˜¸ì¶œ");
+		logger.info("updateGET() È£Ãâ");
 		RoomVO vo = roomService.read(roomBno);
 		model.addAttribute("roomVO", vo);
 	} // end updateGET()
 	
-	/* ìˆ˜ì • POST */
-	@PostMapping("/update")
-	public String updatePOST(RoomVO vo, RedirectAttributes reAttr) {
-		logger.info("update() í˜¸ì¶œ");
-		int result = roomService.updateInfo(vo.getRoomBno());
-		
-		if (result == 1) {
-			reAttr.addFlashAttribute("update_result", "success");
-			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
-		} else {
-			reAttr.addFlashAttribute("update_result", "fail");
-			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
-		}
-	} // end updatePOST()
 	
-	/* ì‚­ì œ GET */
+	/* »èÁ¦ GET */
 	@GetMapping("/delete")
 	public String delete(Integer bno, RedirectAttributes reAttr) {
-		logger.info("delete() í˜¸ì¶œ : bno = " + bno);
+		logger.info("delete() È£Ãâ : bno = " + bno);
 		
 		int result = roomService.delete(bno);
 		
