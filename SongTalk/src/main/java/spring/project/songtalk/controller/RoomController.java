@@ -1,7 +1,5 @@
 package spring.project.songtalk.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -30,10 +28,16 @@ public class RoomController {
 	/* 전체채팅방, 나의 채팅방 */
 	/* list, detail, update, delete */
 	
+	/* 채팅 메인페이지 */
+	@GetMapping("/HOME")
+	public void HOMEGET() {
+		logger.info("HOME() 호출");
+		System.out.println("aaaaa");
+	}
 	
 	/* 채팅방 개설 */
 	@PostMapping("/register")
-	public String registerPOST(RoomVO vo, RedirectAttributes reAttr, HttpServletRequest request0 ) {
+	public String registerPOST(RoomVO vo, RedirectAttributes reAttr, HttpServletRequest request ) {
 		logger.info("registerPOST() 호출");
 		logger.info(vo.toString());
 		
@@ -43,29 +47,29 @@ public class RoomController {
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("create_result", "success");
-			return "redirect:/songtalk/chat";
+			return "redirect:/songtalk/chat/roomDetail";
 		} else {
 			reAttr.addFlashAttribute("create_result", "fail");
-			return "redirect:/songtalk/";
+			return "redirect:/songtalk/chat/HOME";
 		}
 	} // end registerPOST()
 	
 	/* 전체 채팅방 */
-	@GetMapping("/detailALL")
+	@GetMapping("/allDetail")
 	public void detailALLGET(Model model) {
-		logger.info("detailAllGET() 호출");
+		logger.info("allDetailGET() 호출");
 		
 	} // end detailALL()
 	
 	/* 특정 대화방 */
-	@GetMapping("/detailRoom")
+	@GetMapping("/roomDetail")
 	public String detailROOMGET(Integer roomBno, Model model) {
 		logger.info("detailROOMGET() 호출");
 		
 		RoomVO vo = roomService.read(roomBno);
 		model.addAttribute("roomVO", vo);
 		
-		return "redirect:/songtalk/chat/room?bno=" + roomBno;
+		return "redirect:/chat/roomDetail?bno=" + roomBno;
 	} // end detailROOMGET()
 	
 	/* 챗봇방 */
@@ -86,10 +90,10 @@ public class RoomController {
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("update_result", "success");
-			return "redirect:/chat/room?bno=" + vo.getRoomBno();
+			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
 		} else {
 			reAttr.addFlashAttribute("update_result", "fail");
-			return "redirect:/chat/room?bno=" + vo.getRoomBno();
+			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
 		}
 	} // end updatePOST()
 	
@@ -102,10 +106,10 @@ public class RoomController {
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("delete_result", "success");
-			return "redirect:/chat/list";
+			return "redirect:/chat/HOME";
 		} else {
 			reAttr.addFlashAttribute("delete_result", "fail");
-			return "redirect:/chat/list";
+			return "redirect:/chat/HOME";
 		}
 	}
 }

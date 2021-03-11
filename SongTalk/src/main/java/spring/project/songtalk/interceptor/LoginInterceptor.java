@@ -39,8 +39,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		logger.info("=== LoginInterceptor postHandle loginId = " + loginId);
 
 		if (loginId != null) {
-			int blacklist = (int) modelAndView.getModel().get("blacklist");
-			logger.info("=== LoginInterceptor postHandle blacklist = " + blacklist);
+			logger.info("=== LoginInterceptor postHandle blacklist");
 			logger.info("�α��� ����");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId", loginId);

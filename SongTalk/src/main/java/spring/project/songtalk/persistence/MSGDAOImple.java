@@ -25,25 +25,25 @@ public class MSGDAOImple implements MSGDAO {
 	
 	@Override
 	public int insert(MSGVO vo) {
-		logger.info("register() È£Ãâ");
+		logger.info("register() í˜¸ì¶œ");
 		return sqlSession.insert(NAMESPACE + ".insert", vo);
 	}
 
 	@Override
 	public MSGVO select(int msgBno) {
-		logger.info("select() È£Ãâ");
+		logger.info("select() í˜¸ì¶œ");
 		return sqlSession.selectOne(NAMESPACE + ".select", msgBno);
 	}
 	
 	@Override
 	public List<MSGVO> select() {
-		logger.info("selectList() È£Ãâ");
+		logger.info("selectList() í˜¸ì¶œ");
 		return sqlSession.selectList(NAMESPACE + ".select");
 	}
 
 	@Override
 	public int delete(int msgBno) {
-		logger.info("delete() È£Ãâ");
+		logger.info("delete() í˜¸ì¶œ");
 		return sqlSession.delete(NAMESPACE + ".delete", msgBno);
 	}
 

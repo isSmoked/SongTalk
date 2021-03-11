@@ -3,18 +3,18 @@ package spring.project.songtalk.persistence;
 import spring.project.songtalk.domain.MemberVO;
 
 public interface MemberDAO {
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	public abstract int insert(MemberVO vo);
 	
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	public abstract MemberVO login(MemberVO vo);
 	
-	// Á¤º¸ ¼öÁ¤
+	// ì •ë³´ ìˆ˜ì •
 	public abstract int update(MemberVO vo);
 	
-	// Á¤º¸ »èÁ¦
+	// ì •ë³´ ì‚­ì œ
 	public abstract int delete(String userid);
 	
-	// È¸¿ø °Ë»ö
+	// íšŒì› ê²€ìƒ‰
 	public abstract MemberVO select(String userid); 
 }

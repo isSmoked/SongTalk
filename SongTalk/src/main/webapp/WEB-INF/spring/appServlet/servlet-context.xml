@@ -32,7 +32,7 @@
 	<beans:bean id="echoHandler" class="spring.project.songtalk.socketHandler.EchoHandler" /> 
 	
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/studyBoard"/>
+		<websocket:mapping handler="echoHandler" path="/chat"/>
 		<!-- TODO : 핸들러 경로 설정하기! -->
 		
 		<websocket:handshake-interceptors>

@@ -59,7 +59,7 @@ public class EchoHandler extends TextWebSocketHandler{
 				String caller = strs[1];	// 수신하는 이용자의 id 
 				String receiver = strs[2];	// 발신하는 이용자의 id 
 				String title = strs[3];		// 대화방 이름
-				
+				String content = strs[4];	// 대화 내용
 				
 				// 초대 Alert
 				if (cmd.equals("invite")) {				// 대화방에 초대될 때 (cmd = invite)
@@ -81,22 +81,22 @@ public class EchoHandler extends TextWebSocketHandler{
 					}
 					
 				// 대화방 채팅
+					// 어느 대화방의 대화인지 여기서 걸러야한다.!!
 				} else if (cmd.equals("roomCHAT")) {
-					// caller, receiver[], title(roomName)
+					// caller, receiver[], title(roomName), content
 					logger.info("roomCHAT() 호출");
 					
-					String[] roomReceiver = receiver.split(","); // 받는 사람
+					String[] roomReceiver = receiver.split("[*]"); // 받는 사람
 					
 					for (int i = 0; i < roomReceiver.length; i++) {
 						WebSocketSession boardWriterSession = users.get(roomReceiver[i]);
-
-						// message handle
-						String chatMsg = receiver;
 						
-						TextMessage tmpMsg = new TextMessage("roomCHAT," + caller + " ^ " + chatMsg);
+						TextMessage tmpMsg = new TextMessage("roomCHAT*" + caller + "*" + roomReceiver 
+								+ "*" + title + "*" + content);
 						boardWriterSession.sendMessage(tmpMsg);
 						logger.info("chatMsg(roomCHAT) 정상적으로 전송 완료!");
 					}
+					/* onmessage로 출력하지말고 여기서 controller로 저장시키고, jsp에서 ajax로 데이터 불러오자 */
 					
 				} else if (cmd.equals("allCHAT")) {
 					/* 로그인중인 모든 유저에게 보낼 때 > allCHAT */

@@ -21,44 +21,50 @@ public class RoomServiceImple implements RoomService {
 	
 	@Override
 	public int create(RoomVO vo) {
-		logger.info("create() È£Ãâ");
+		logger.info("create() í˜¸ì¶œ");
 		return dao.insert(vo);
 	}
 
 	@Override
 	public RoomVO read(int roomBno) {
-		logger.info("read() È£Ãâ");
+		logger.info("read() í˜¸ì¶œ");
 		return dao.select(roomBno);
 	}
 
 	@Override
 	public List<RoomVO> read() {
-		logger.info("readList() È£Ãâ");
+		logger.info("readList() í˜¸ì¶œ");
 		return dao.select();
 	}
 
 	@Override
 	public int updateInfo(int roomBno) {
-		logger.info("updateInfo() È£Ãâ");
+		logger.info("updateInfo() í˜¸ì¶œ");
 		return dao.updateInfo(roomBno);
 	}
 	
 	@Override
 	public int updateContent(int roomBno) {
-		logger.info("updateContent() È£Ãâ");
+		logger.info("updateContent() í˜¸ì¶œ");
 		return dao.updateContent(roomBno);
 	}
 	
 	@Override
 	public int updateMember(int roomBno) {
-		logger.info("updateMember() È£Ãâ");
+		logger.info("updateMember() í˜¸ì¶œ");
 		return dao.updateMember(roomBno);
 	}
 
 	@Override
 	public int delete(int roomBno) {
-		logger.info("delete() È£Ãâ");
+		logger.info("delete() í˜¸ì¶œ");
 		return dao.delete(roomBno);
+	}
+	
+	@Override
+	public List<RoomVO> select (String keyword) {
+		logger.info("select() í˜¸ì¶œ");
+		return dao.select(keyword);
 	}
 
 }

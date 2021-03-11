@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -31,9 +30,8 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter implements 
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		logger.info("registerWebSocketHandler() È£Ãâ");
-		// registry.addHandler(echoHandler, "/songtalk/???").setAllowedOrigins("*");
-		// TODO : °æ·Î ¼öÁ¤ÇÏ±â
+		logger.info("registerWebSocketHandler() í˜¸ì¶œ");
+		registry.addHandler(echoHandler, "/songtalk/chat").setAllowedOrigins("*");
 	}
 	
 

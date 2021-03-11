@@ -6,15 +6,15 @@ import spring.project.songtalk.domain.MSGVO;
 
 public interface MSGDAO {
 	
-	// ¸Ş½ÃÁö ÀúÀå
+	// ë©”ì‹œì§€ ì €ì¥
 	public abstract int insert(MSGVO vo);
 	
-	// ¸Ş½ÃÁö Ãâ·Â
+	// ë©”ì‹œì§€ ì¶œë ¥
 	public abstract MSGVO select(int msgBno);
 	
-	// ¸Ş½ÃÁö Ãâ·Â(¸®½ºÆ®)
+	// ë©”ì‹œì§€ ì¶œë ¥(ë¦¬ìŠ¤íŠ¸)
 	public abstract List<MSGVO> select();
 	
-	// ¸Ş½ÃÁö »èÁ¦
+	// ë©”ì‹œì§€ ì‚­ì œ
 	public abstract int delete(int msgBno);
 }

@@ -28,11 +28,6 @@ public class MemberController {
 	
 	/* 회원가입, 로그인, 정보수정, 정보삭제(개인정보) */
 	
-	/* 채팅 메인페이지 */
-	@GetMapping("/HOME")
-	public void HOMEGET() {
-		logger.info("HOME() 호출");
-	}
 	
 	/* 회원가입 */ // ---------------------------------------------
 	@GetMapping("/register")

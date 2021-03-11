@@ -44,10 +44,11 @@
 	<a href="member/login"><input type="button" value="login"></a>
 	
 	<c:if test="${loginId ne null }">
-		<a href="member/HOME"><input type="button" value="전체 채팅방"></a>
+		<a href="chat/HOME"><input type="button" value="채팅방 홈"></a>
 	</c:if>
 	
-	<a href="member/HOME"><input type="button" value="전체 채팅방"></a>
+	<!-- 지울 것 test 용 -->
+	<a href="chat/HOME"><input type="button" value="채팅방 홈"></a>
 	
 </body>
 </html>

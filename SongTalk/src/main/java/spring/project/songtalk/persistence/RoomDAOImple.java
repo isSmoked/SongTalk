@@ -24,44 +24,49 @@ public class RoomDAOImple implements RoomDAO {
 	
 	@Override
 	public int insert(RoomVO vo) {
-		logger.info("insert() È£Ãâ");
+		logger.info("insert() í˜¸ì¶œ");
 		return sqlSession.insert(NAMESPACE + ".insert", vo);
 	}
 
 	@Override
 	public List<RoomVO> select() {
-		logger.info("selectList() È£Ãâ");
+		logger.info("selectList() í˜¸ì¶œ");
 		return sqlSession.selectList(NAMESPACE + ".selectList");
 	}
 
 	@Override
 	public RoomVO select(int roomBno) {
-		logger.info("select() È£Ãâ");
+		logger.info("select() í˜¸ì¶œ");
 		return sqlSession.selectOne(NAMESPACE + ".select", roomBno);
 	}
 
 	@Override
 	public int updateInfo(int roomBno) {
-		logger.info("updateInfo() È£Ãâ");
+		logger.info("updateInfo() í˜¸ì¶œ");
 		return sqlSession.update(NAMESPACE + ".updateInfo", roomBno);
 	}
 	
 	@Override
 	public int updateContent(int roomBno) {
-		logger.info("updateContent() È£Ãâ");
+		logger.info("updateContent() í˜¸ì¶œ");
 		return sqlSession.update(NAMESPACE + ".updateContent", roomBno);
 	}
 	
 	@Override
 	public int updateMember(int roomBno) {
-		logger.info("updateMember() È£Ãâ");
+		logger.info("updateMember() í˜¸ì¶œ");
 		return sqlSession.update(NAMESPACE + ".updateMember", roomBno);
 	}
 
 	@Override
 	public int delete(int roomBno) {
-		logger.info("delete() È£Ãâ");
+		logger.info("delete() í˜¸ì¶œ");
 		return sqlSession.delete(NAMESPACE + ".delete", roomBno);
 	}
 
+	@Override
+	public List<RoomVO> select(String keyword) {
+		logger.info("select() í˜¸ì¶œ");
+		return sqlSession.selectList(NAMESPACE + ".selectKeyword", keyword);
+	}
 }

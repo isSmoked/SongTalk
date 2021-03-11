@@ -47,6 +47,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${roomBno} = #{roomBno}
 	</update>
 	
+	<!-- 키워드로 검색 -->
+	<select id="selectKeyword" resultType="roomVO">
+		select * from ${stRoomTable}
+		where ${roomTitle} like #{roomTitle}
+	</select>
+	
+	<!-- 채팅방 삭제 -->
 	<delete id="delete">
 		delete ${stRoomTable}
 		where ${roomBno} = #{roomBno}
