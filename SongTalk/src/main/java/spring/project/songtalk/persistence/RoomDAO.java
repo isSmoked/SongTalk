@@ -5,27 +5,27 @@ import java.util.List;
 import spring.project.songtalk.domain.RoomVO;
 
 public interface RoomDAO {
-	// ì±„íŒ…ë°© ê°œì„¤
+	// Ã¤ÆÃ¹æ °³¼³
 	public abstract int insert(RoomVO vo);
 	
-	// ì±„íŒ…ë°© ë¦¬ìŠ¤íŠ¸
+	// Ã¤ÆÃ¹æ ¸®½ºÆ®
 	public abstract List<RoomVO> select();
 	
-	// ì±„íŒ…ë°© ì„ íƒ
+	// Ã¤ÆÃ¹æ ¼±ÅÃ
 	public abstract RoomVO select(int roomBno);
 	
-	// ì±„íŒ…ë°© ì •ë³´ìˆ˜ì •
+	// Ã¤ÆÃ¹æ Á¤º¸¼öÁ¤
 	public abstract int updateInfo(int roomBno);
 	
-	// ì±„íŒ…ë°© ë‚´ìš©ê°±ì‹ 
-	public abstract int updateContent(int roomBno);
+	// Ã¤ÆÃ¹æ ³»¿ë°»½Å
+	public abstract int updateContent(RoomVO vo);
 	
-	// ì±„íŒ…ë°© ì¸ì›ìˆ˜ì •
+	// Ã¤ÆÃ¹æ ÀÎ¿ø¼öÁ¤
 	public abstract int updateMember(int roomBno);
 	
-	// ì±„íŒ…ë°© ì‚­ì œ
+	// Ã¤ÆÃ¹æ »èÁ¦
 	public abstract int delete(int roomBno);
 	
-	// ì±„íŒ…ë°© í‚¤ì›Œë“œ ê²€ìƒ‰(title)
+	// Ã¤ÆÃ¹æ Å°¿öµå °Ë»ö(title)
 	public abstract List<RoomVO> select(String keyword);
 }

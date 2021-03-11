@@ -21,7 +21,7 @@ public interface RoomService {
 	public abstract int updateMember(int roomBno);
 	
 	// 채팅방 내용수정
-	public abstract int updateContent(int roomBno);
+	public abstract int updateContent(RoomVO vo);
 	
 	// 채팅방 삭제
 	public abstract int delete(int roomBno);
