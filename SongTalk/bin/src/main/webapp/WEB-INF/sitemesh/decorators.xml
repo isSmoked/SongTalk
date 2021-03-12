@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views">
+
+    
+    <decorator name="header" page="layouts/header.jsp" />
+    <decorator name="footer" page="layouts/footer.jsp" />
+    <decorator name="menu" page="layouts/menu.jsp" />
+    <decorator name="side" page="layouts/side.jsp" />
+    
+    
+    <decorator name="layout" page="layouts/layout-default.jsp">
+        <pattern>/</pattern>
+    </decorator>
+    
+    <excludes>
+        <pattern>/member/find-id</pattern>
+        <pattern>/member/find-pw</pattern>
+        <pattern>/member/find-pw-result</pattern>
+        <pattern>/manager/register</pattern>
+    </excludes>
+    
+</decorators>

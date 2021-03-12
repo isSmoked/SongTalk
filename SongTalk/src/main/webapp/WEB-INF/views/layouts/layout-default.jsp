@@ -63,6 +63,7 @@
 			
 			$(document).ready(function(){
 				console.log('layout - 자바스크립트가 작동하나요?');
+				var printMSG = '';
 				
 				// WEBSOCKET ---------------------------------------------------------
 				var sock = new WebSocket('ws://' + window.location.host + '/songtalk/chat/websocket');
@@ -179,9 +180,118 @@
 					});
 				}
 				
+				// *******************************************************************************
+				// ajax로 message 저장 (msg)
+				$('#btn_aaa').click(function() {
+					var content = $('#aaaContent').val();
+					// 게시판 번호를 받아온다!
+					var roomBno = '${vo.roomBno}';
+					
+					var obj = {
+							'msgSender' : '${loginId}',
+							'msgReceiver' : ' ',
+							'msgContent' : content,
+							'msgRoom' : roomBno
+						};
+					console.log(obj);
+					$.ajax({
+						type : 'post',
+						url : 'chat',
+						headers : {
+							'Content-Type' : 'application/json',
+							'H-HTTP-Method-Override' : 'POST'
+						},
+						data : JSON.stringify(obj),
+						success : function(result, status) {
+							console.log(result);
+							console.log(status);
+							if (result === 1) {
+								console.log('Websocket msg 저장성공!');
+							}
+						}, // end success
+						error : function(result, status) {
+							console.log('result : ' + result);
+							console.log('status : ' + status);
+						} // end error()
+					}); // end ajax send
+				}); // end saveMsg()
+				
+				// ***************************************************************
+				// ajax로 채팅내역 가져오기 (msg)
+				function getmsg(bno) {
+					console.log('getmsg() 호출');
+					var msgBno = bno;
+					var url = 'chat/msgall' + msgBno;
+					console.log('getmsg() url : ' + url);
+					$.getJSON (
+							url, function(jsonData){
+								console.log('받아온 json데이터 : ' + jsonData);
+								var content = jsonData['msgContent'];
+								var sender = jsonData['msgSender'];
+								
+								// msg 가공하기!
+								console.log('msgSender : ' + sender + ', msgContent : ' + content);
+								
+								printMsg += sender + " : " + content
+								
+								// 채팅내역 출력
+								printAllchat(printMsg);
+							}); // end callback(), getJSON()
+				} // end getAllchat()
+				
+				// *******************************************************************************
+				// ajax로 채팅내역 가져오기 (room)
+				function getroom() {
+					console.log('getroom() 호출');
+					var roomBno = '${vo.roomBno}';
+					var url = 'chat/roomall' + roomBno;
+					console.log('getroomt() url : ' + url);
+					$.getJSON (
+							url, function(jsonData){
+								console.log('받아온 json데이터 : ' + jsonData);
+								var msg = jsonData['roomContent'];
+								
+								// msg 가공하기!
+								console.log('roomContent : ' + msg);
+								
+								// roomContent는 메시지bno들이 넘어올예정 > msg
+								// TODO : msgBno로 msgContent를 가져올수 있는 메소드를 작성!
+								var msgBnos[] = msg.split(',');
+								for (var i = 0; i < msgBnos.length; i++){
+									getmsg(msgBnos[i]);
+								}
+								
+								// 채팅내역 출력
+								printAllchat(savedMsg);
+							}); // end callback(), getJSON()
+				} // end getroom()
+				
+				// *******************************************************************************
+				// ajax로 채팅내역 추가
+				function setRoom() {
+					console.log('setRoom() 호출');
+					var roomBno = '${vo.roomBno}';
+					var msg = '${msgBno}';
+					
+					console.log('savedMsg' + roomBno);
+					
+					$.ajax({
+						type : 'put',
+						url : 'chat/' + roomBno,
+						headers : {
+							'Content-Type' : 'application/json',
+							'X-HTTP-Medhod-Override' : 'PUT'
+						},
+						data : JSON.stringify({
+							'roomContent' : msg
+						}),
+					})
+				}
+				// ***********************************************
+				// TODO : 새로 작성해보자!
 				
 				
-			})
+			}); // end document.ready()
 	</script>
 </body>
 </html>

@@ -30,4 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from ${stMSGTable}
 		where ${msgBno} = #{msgBno}
 	</delete>
+	
+	<!-- 제일 최근 메시지 가져오기 -->
+	<select id="selectNew" resultType="MSGVO">
+		select * from ${stMSGTable}
+		ORDER BY rownum DESC LIMIT 1
+	</select>
 </mapper>

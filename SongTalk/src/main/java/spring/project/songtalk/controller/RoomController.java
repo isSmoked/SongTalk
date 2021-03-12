@@ -41,7 +41,7 @@ public class RoomController {
 		logger.info("registerPOST() 호출");
 		logger.info(vo.toString());
 		
-		vo.setRoomContent(" ");
+		vo.setRoomContent(",");
 		
 		int result = roomService.create(vo);
 		
@@ -73,29 +73,6 @@ public class RoomController {
 	} // end detailROOMGET()
 	
 	/* 챗봇방 */
-	
-	/* 수정 */
-	@GetMapping("update")
-	public void updateGET(Model model, Integer roomBno) {
-		logger.info("updateGET() 호출");
-		RoomVO vo = roomService.read(roomBno);
-		model.addAttribute("roomVO", vo);
-	} // end updateGET()
-	
-	/* 수정 POST */
-	@PostMapping("/update")
-	public String updatePOST(RoomVO vo, RedirectAttributes reAttr) {
-		logger.info("update() 호출");
-		int result = roomService.updateInfo(vo.getRoomBno());
-		
-		if (result == 1) {
-			reAttr.addFlashAttribute("update_result", "success");
-			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
-		} else {
-			reAttr.addFlashAttribute("update_result", "fail");
-			return "redirect:/chat/roomDetail?bno=" + vo.getRoomBno();
-		}
-	} // end updatePOST()
 	
 	/* 삭제 GET */
 	@GetMapping("/delete")

@@ -21,26 +21,32 @@ public class MSGServiceImple implements MSGService {
 	
 	@Override
 	public int create(MSGVO vo) {
-		logger.info("create() È£Ãâ");
+		logger.info("create() í˜¸ì¶œ");
 		return dao.insert(vo);
 	}
 
 	@Override
 	public MSGVO read(int msgBno) {
-		logger.info("read() È£Ãâ");
+		logger.info("read() í˜¸ì¶œ");
 		return dao.select(msgBno);
 	}
 	
 	@Override
 	public List<MSGVO> read() {
-		logger.info("read() È£Ãâ");
+		logger.info("read() í˜¸ì¶œ");
 		return dao.select();
 	}
 
 	@Override
 	public int delete(int msgBno) {
-		logger.info("delete() È£Ãâ");
+		logger.info("delete() í˜¸ì¶œ");
 		return dao.delete(msgBno);
 	}
 
+	@Override
+	public MSGVO readNew() {
+		logger.info("selectNew() í˜¸ì¶œ");
+		return dao.selectNew();
+				
+	}
 }

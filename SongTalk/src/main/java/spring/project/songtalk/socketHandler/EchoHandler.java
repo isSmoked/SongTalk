@@ -7,19 +7,27 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import spring.project.songtalk.service.MSGService;
+import spring.project.songtalk.service.RoomService;
+
 @Component
 public class EchoHandler extends TextWebSocketHandler{
 	// 로그인 한 전체
 	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	
-	// 대화방
-	// ???
+
+	@Autowired
+	private RoomService roomService;
+	
+	@Autowired
+	private MSGService msgService;
 	
 	private static final Logger logger =
 			LoggerFactory.getLogger(EchoHandler.class);

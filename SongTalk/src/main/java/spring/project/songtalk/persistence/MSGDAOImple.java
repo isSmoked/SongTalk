@@ -46,5 +46,11 @@ public class MSGDAOImple implements MSGDAO {
 		logger.info("delete() 호출");
 		return sqlSession.delete(NAMESPACE + ".delete", msgBno);
 	}
+	
+	@Override
+	public MSGVO selectNew() {
+		logger.info("selectNew() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".selectNew");
+	}
 
 }

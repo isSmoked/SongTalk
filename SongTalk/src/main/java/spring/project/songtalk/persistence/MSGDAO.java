@@ -17,4 +17,7 @@ public interface MSGDAO {
 	
 	// 메시지 삭제
 	public abstract int delete(int msgBno);
+	
+	// 최근 메시지 가져오기
+	public abstract MSGVO selectNew();
 }
