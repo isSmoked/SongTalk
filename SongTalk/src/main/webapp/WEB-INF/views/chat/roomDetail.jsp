@@ -27,7 +27,7 @@
 			<input type="hidden" id="msgUserid" value="${loginId }"/>
 		</div>
 		
-		<div style="position:absolute; bottom:2px; text-align:center; background-color:white;">
+		<div>
 			<input type="text" id="roommsgContent" value="" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-dark" type="button" value="보내기" id="roommsg_send"/>
 		</div>
 	</div>

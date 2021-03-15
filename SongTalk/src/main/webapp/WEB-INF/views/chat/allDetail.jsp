@@ -29,7 +29,7 @@
 		</div>
 		
 		<div>
-			<input type="text" id="allmsgContent" value="" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-dark" type="button" value="보내기" id="allmsg_send"/>
+			<input type="text" id="allmsgContent" value="" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-danger btn-lg" type="button" value="보내기" id="allmsg_send"/>
 		</div>
 	</div>
 </body>
