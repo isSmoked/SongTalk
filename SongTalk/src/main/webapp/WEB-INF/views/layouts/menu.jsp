@@ -42,14 +42,14 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 	<!-- test -->
 	<div class="list-group">
 		<!-- 전체채팅 -->
-		<a href="/songtalk/chat/allDetail" class="list-group-item" style="background-color:grey; border-color:grey; color:black; ">
+		<a href="/songtalk/chat/allDetail" class="list-group-item bg-danger text-light" >
 			전체채팅&nbsp;&nbsp;&nbsp;	
-			<span class="badge" style="background-color:black; color:white;">14</span>
+			<span class="badge text-danger" style="background-color:white;">14</span>
 		</a>
 		
 		<!-- 대화방채팅 -->
 		<c:forEach items="${roomList }" var="vo">
-			<a href="/songtalk/chat/detail?bno=${vo.roomBno }" class="list-group-item">
+			<a href="/songtalk/chat/detail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger">
 				${vo.roomTitle }
 				<c:set var="attendant" value="${fn:split(vo.roomUser, ',') }"></c:set>
 				<c:forEach var="users" items="${attendant }">

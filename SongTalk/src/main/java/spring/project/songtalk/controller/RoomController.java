@@ -1,3 +1,4 @@
+
 package spring.project.songtalk.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,23 +26,23 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-	/* ÀüÃ¼Ã¤ÆÃ¹æ, ³ªÀÇ Ã¤ÆÃ¹æ */
+	/* ì „ì²´ì±„íŒ…ë°©, ë‚˜ì˜ ì±„íŒ…ë°© */
 	/* list, detail, update, delete */
 	
-	/* Ã¤ÆÃ ¸ŞÀÎÆäÀÌÁö */
+	/* ì±„íŒ… ë©”ì¸í˜ì´ì§€ */
 	@GetMapping("/HOME")
 	public void HOMEGET() {
-		logger.info("HOME() È£Ãâ");
+		logger.info("HOME() í˜¸ì¶œ");
 		System.out.println("aaaaa");
 	}
 	
-	/* Ã¤ÆÃ¹æ °³¼³ */
+	/* ì±„íŒ…ë°© ê°œì„¤ */
 	@PostMapping("/register")
 	public String registerPOST(RoomVO vo, RedirectAttributes reAttr, HttpServletRequest request ) {
-		logger.info("registerPOST() È£Ãâ");
+		logger.info("registerPOST() í˜¸ì¶œ");
 		logger.info(vo.toString());
 		
-		vo.setRoomContent(" ");
+		vo.setRoomContent(",");
 		
 		int result = roomService.create(vo);
 		
@@ -54,17 +55,17 @@ public class RoomController {
 		}
 	} // end registerPOST()
 	
-	/* ÀüÃ¼ Ã¤ÆÃ¹æ */
+	/* ì „ì²´ ì±„íŒ…ë°© */
 	@GetMapping("/allDetail")
 	public void detailALLGET(Model model) {
-		logger.info("allDetailGET() È£Ãâ");
+		logger.info("allDetailGET() í˜¸ì¶œ");
 		
 	} // end detailALL()
 	
-	/* Æ¯Á¤ ´ëÈ­¹æ */
+	/* íŠ¹ì • ëŒ€í™”ë°© */
 	@GetMapping("/roomDetail")
 	public String detailROOMGET(Integer roomBno, Model model) {
-		logger.info("detailROOMGET() È£Ãâ");
+		logger.info("detailROOMGET() í˜¸ì¶œ");
 		
 		RoomVO vo = roomService.read(roomBno);
 		model.addAttribute("roomVO", vo);
@@ -72,21 +73,12 @@ public class RoomController {
 		return "redirect:/chat/roomDetail?bno=" + roomBno;
 	} // end detailROOMGET()
 	
-	/* Ãªº¿¹æ */
+	/* ì±—ë´‡ë°© */
 	
-	/* ¼öÁ¤ */
-	@GetMapping("update")
-	public void updateGET(Model model, Integer roomBno) {
-		logger.info("updateGET() È£Ãâ");
-		RoomVO vo = roomService.read(roomBno);
-		model.addAttribute("roomVO", vo);
-	} // end updateGET()
-	
-	
-	/* »èÁ¦ GET */
+	/* ì‚­ì œ GET */
 	@GetMapping("/delete")
 	public String delete(Integer bno, RedirectAttributes reAttr) {
-		logger.info("delete() È£Ãâ : bno = " + bno);
+		logger.info("delete() í˜¸ì¶œ : bno = " + bno);
 		
 		int result = roomService.delete(bno);
 		

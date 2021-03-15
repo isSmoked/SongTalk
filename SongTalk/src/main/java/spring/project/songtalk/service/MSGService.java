@@ -5,15 +5,18 @@ import java.util.List;
 import spring.project.songtalk.domain.MSGVO;
 
 public interface MSGService {
-	// ¸Ş½ÃÁö ÀúÀå
+	// ë©”ì‹œì§€ ì €ì¥
 	public abstract int create(MSGVO vo);
 	
-	// ¸Ş½ÃÁö °¡Á®¿À±â (ÇÑÁÙ)
+	// ë©”ì‹œì§€ ê°€ì ¸ì˜¤ê¸° (í•œì¤„)
 	public abstract MSGVO read(int msgBno);
 	
-	// ¸Ş½ÃÁö °¡Á®¿À±â (¸®½ºÆ®)
+	// ë©”ì‹œì§€ ê°€ì ¸ì˜¤ê¸° (ë¦¬ìŠ¤íŠ¸)
 	public abstract List<MSGVO> read();
 	
-	// ¸Ş½ÃÁö »èÁ¦
+	// ë©”ì‹œì§€ ì‚­ì œ
 	public abstract int delete(int msgBno);
+	
+	// ë©”ì‹œì§€ ê°€ì ¸ì˜¤ê¸° (ìµœê·¼)
+	public abstract MSGVO readNew();
 }

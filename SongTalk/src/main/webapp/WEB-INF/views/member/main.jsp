@@ -38,17 +38,20 @@
 </head>
 <body>
 	<!-- 로그인버튼(작게), 채팅방검색, 챗봇, 내정보 -->
-	<h1>메인 페이지</h1>
+	<div class="jumbotron bg-danger">
+		  <h1 class="text-light">Song Talk</h1>
+		  <h1>&nbsp;</h1>
+		  <h4 class="text-light">chat with unknown!</h4>
+		  <h1>&nbsp;</h1>
+		  <h1>&nbsp;</h1>
+	  <p><a class="btn btn-lg btn-light text-danger" href="member/login" role="button">LOGIN</a>
+	     <a class="btn btn-lg btn-light text-danger" href="chat/HOME" role="button">HOME</a>
+	     
+	     <c:if test="${loginId ne null }">
+			<a class="btn btn-lg btn-light text-danger" href="chat/HOME" role="button">HOME</a>
+		 </c:if></p>
+	</div>
 	
-	<!-- 로그인 -->
-	<a href="member/login"><input type="button" value="login"></a>
-	
-	<c:if test="${loginId ne null }">
-		<a href="chat/HOME"><input type="button" value="채팅방 홈"></a>
-	</c:if>
-	
-	<!-- 지울 것 test 용 -->
-	<a href="chat/HOME"><input type="button" value="채팅방 홈"></a>
 	
 </body>
 </html>

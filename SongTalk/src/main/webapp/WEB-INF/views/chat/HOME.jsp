@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <meta charset="UTF-8">
 <title>채팅 홈</title>
@@ -56,22 +58,36 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<div class="jumbotron">
-		  <h1>Test Talk</h1>
+	<div class="jumbotron bg-white">
+		  <h1>Song Talk</h1>
 		  <h1>&nbsp;</h1>
 		  <h4>chat with unknown!</h4>
 	</div>
-
+	
 	<!-- 큰 버튼으로 이미지를 넣어서 구현 -->
   	<!-- test -->
 	
   	
 	<!-- 채팅방 생성 / 채팅방 검색 / 내 정보 -->
-  	<a href="/.../member/detail"><input type="button" class="btn btn-dark" value="내정보" style="width:20%; height:350px; font-size:50px;"></a>
+  	<a href="/.../member/detail">
+  		<button class="btn btn-danger" style="width:20%; height:350px; font-size:50px;">
+  			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+  			<div>&nbsp;</div>
+  			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">INFO</span></div>
+  		</button>
+  	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/.../chat/register"><input type="button" class="btn btn-light" value="채팅방 생성" style="width:20%; height:350px; font-size:40px;"></a>
+	<a href="/.../chat/register">
+		<button class="btn btn-white text-danger" style="width:20%; height:350px; font-size:50px;">
+			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+			<div>&nbsp;</div>
+			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">CREATE</span></div>
+		</button>
+	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/.../chat/search"><input type="button" class="btn btn-dark" value="채팅방 검색" style="width:20%; height:350px; font-size:40px;"></a>
+	<a href="/.../chat/search"><input type="button" class="btn btn-danger" value="SEARCH" style="width:20%; height:350px; font-size:40px;"></a>
 	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

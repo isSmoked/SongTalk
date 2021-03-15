@@ -13,14 +13,13 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
 @Component
 public class EchoHandler extends TextWebSocketHandler{
 	// 로그인 한 전체
 	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	
-	// 대화방
-	// ???
-	
+
 	private static final Logger logger =
 			LoggerFactory.getLogger(EchoHandler.class);
 	
