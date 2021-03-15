@@ -64,28 +64,8 @@ $(document).ready(function(){
 		  <h4>chat with unknown!</h4>
 	</div>
 	
-	<!-- 큰 버튼으로 이미지를 넣어서 구현 -->
-  	<!-- test -->
 	
-  	
-	<!-- 채팅방 생성 / 채팅방 검색 / 내 정보 -->
-  	<a href="/.../member/detail">
-  		<button class="btn btn-danger" style="width:20%; height:350px; font-size:50px;">
-  			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-  			<div>&nbsp;</div>
-  			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">INFO</span></div>
-  		</button>
-  	</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/.../chat/register">
-		<button class="btn btn-white text-danger" style="width:20%; height:350px; font-size:50px;">
-			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-			<div>&nbsp;</div>
-			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">CREATE</span></div>
-		</button>
-	</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/.../chat/search"><input type="button" class="btn btn-danger" value="SEARCH" style="width:20%; height:350px; font-size:40px;"></a>
+	
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

@@ -42,16 +42,72 @@
 		  <h1 class="text-light">Song Talk</h1>
 		  <h1>&nbsp;</h1>
 		  <h4 class="text-light">chat with unknown!</h4>
-		  <h1>&nbsp;</h1>
-		  <h1>&nbsp;</h1>
-	  <p><a class="btn btn-lg btn-light text-danger" href="member/login" role="button">LOGIN</a>
-	     <a class="btn btn-lg btn-light text-danger" href="chat/HOME" role="button">HOME</a>
-	     
-	     <c:if test="${loginId ne null }">
-			<a class="btn btn-lg btn-light text-danger" href="chat/HOME" role="button">HOME</a>
-		 </c:if></p>
+		  
+	  
 	</div>
 	
+	<!-- 비로그인! -->
+	<!-- 로그인 / 등록 -->
+	<c:if test="${loginId eq null }">
+		<div>
+		<!-- 로그인 -->
+		  	<a href="member/login">
+		  		<button class="btn btn-danger" style="float: left; width:20%; height:350px; font-size:50px;">
+		  			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		  			<div>&nbsp;</div>
+		  			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">LOGIN</span></div>
+		  		</button>
+		  	</a>
+		
+		<div style="float: left; width:5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<!-- 회원가입 -->
+			<a href="member/register">
+				<button class="btn btn-white text-danger" style=" float: left; width:20%; height:350px; font-size:50px; border-style:solid; border-color:red;">
+					<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					<div>&nbsp;</div>
+					<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">REGISTER</span></div>
+				</button>
+			</a>
+			
+			<!-- 지울것! -->
+		<div style="float: left; width:5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		
+			<a href="chat/HOME">
+				<button class="btn btn-danger text-white" style=" float: left; width:20%; height:350px; font-size:50px; border-style:solid; border-color:red;">
+					<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-home" aria-hidden="true"></span>
+					<div>&nbsp;</div>
+					<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">ENTER</span></div>
+				</button>
+			</a>
+		
+		</div>
+	</c:if>
+	
+	<!-- 로그인! -->
+	<!-- 수정 / 채팅방 입장 -->
+	<c:if test="${loginId ne null }">
+		<div>
+		<!-- 수정 -->
+		  	<a href="member/update">
+		  		<button class="btn btn-danger" style="float: left; width:20%; height:350px; font-size:50px;">
+		  			<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		  			<div>&nbsp;</div>
+		  			<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">UPDATE</span></div>
+		  		</button>
+		  	</a>
+		
+		<div style="float: left; width:5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<!-- 채팅방 입장 -->
+			<a href="chat/HOME">
+				<button class="btn btn-white text-danger" style=" float: left; width:20%; height:350px; font-size:50px; border-style:solid; border-color:red;">
+					<span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;" class="glyphicon glyphicon-home" aria-hidden="true"></span>
+					<div>&nbsp;</div>
+					<div><span style="width:20%; height:350px; font-size:50px; height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;">ENTER</span></div>
+				</button>
+			</a>
+		
+		</div>
+	</c:if>
 	
 </body>
 </html>
