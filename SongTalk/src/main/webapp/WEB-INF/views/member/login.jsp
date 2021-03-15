@@ -16,14 +16,28 @@
 </head>
 <body>
 
+	<div class="jumbotron bg-white" style="right:0; width:50%;">
+		  <h1>Login</h1>
+		  <h3>&nbsp;</h3>
+		  <h4>&nbsp;&nbsp;&nbsp;Login with your Account!</h4>
+		 
+	</div>
+
 	<form action="login" method="POST">
-		아이디 : <input type="text" name="memberUserid">
-		비밀번호 : <input type="text" name="memberPassword">
-		<input type="button" value="LOGIN">
+		<div style="font-size:25px; position:absolute; left:35%;">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  type="text" name="memberUserid"></div>
+		<div style="font-size:25px; position:absolute; left:35%; top:45%;">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="memberPassword" style="left:50%;"></div>
+		<p>&nbsp;</p>
+		<div style="font-size:25px; position:absolute; left:60%; top:60%; "><input style="width:80px; height:40px;" class="btn btn-lg btn-danger" type="button" value="LOGIN"></div>
 	</form>
-
-	<!-- 회원가입 -->
-	<a href="register"><input type="button" value="REGISTER"></a>
-
+	
+	
+	<div class="alert alert-danger" role="alert" style="position:absolute; left:28%; top:75%; width:50%; height:55px; font-size:20px;">
+		&nbsp;&nbsp;&nbsp; Si vouz avez pas d'account, Registrez-vous a ici.
+		<a href="member/register">
+			<button class="btn btn-lg btn-danger" style="position:absolute; right:5%; width:80px; height:40px;">Register</button>
+		</a>
+	</div>
+	
+	
 </body>
 </html>

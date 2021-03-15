@@ -42,18 +42,23 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 	<!-- test -->
 	<div class="list-group">
 		<!-- 전체채팅 -->
-		<a href="/songtalk/chat/allDetail" class="list-group-item bg-danger text-light" >
+		<a href="/songtalk/chat/allDetail" class="list-group-item bg-danger text-light" style="height:50px; font-size:20px;">
 			전체채팅&nbsp;&nbsp;&nbsp;	
 			<span class="badge text-danger" style="background-color:white;">14</span>
 		</a>
 		
+		<!-- 대화방 추가 -->
+		<a href="/songtalk/chat/register" class="list-group-item bg-white text-danger" style="height:50px; font-size:20px;">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true">   대화방생성 </span>
+		</a>
+		
 		<!-- 대화방채팅 -->
 		<c:forEach items="${roomList }" var="vo">
-			<a href="/songtalk/chat/detail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger">
+			<a href="/songtalk/chat/detail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger" style="height:100px; font-size:20px;">
 				${vo.roomTitle }
 				<c:set var="attendant" value="${fn:split(vo.roomUser, ',') }"></c:set>
 				<c:forEach var="users" items="${attendant }">
-					${users }&nbsp;&nbsp;&nbsp;<span class="badge" style="background-color:black;">14</span>
+					<p style="font-size: 10px;">${users }&nbsp;&nbsp;&nbsp;</p><span class="badge" style="background-color:black;">14</span>
 				</c:forEach>
 			</a>
 		</c:forEach>

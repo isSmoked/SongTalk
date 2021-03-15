@@ -15,8 +15,9 @@
 
 </head>
 <body>
-
-	<h2>전체 채팅방</h2>
+	<div class="page-header">
+  		<h1>전체 채팅방 &nbsp;&nbsp;&nbsp;&nbsp;<small>start chat with everyone!</small></h1>
+	</div>
 	
 	<!-- chat -->
 	<div id="chat">
@@ -28,8 +29,8 @@
 			<input type="hidden" id="msgUserid" value="${loginId }"/>
 		</div>
 		
-		<div>
-			<input type="text" id="allmsgContent" value="" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-danger btn-lg" type="button" value="보내기" id="allmsg_send"/>
+		<div style="position: fixed; bottom: 30px; width:500px; height:40px;">
+			<input type="text" id="allmsgContent" value="" style="width:70%; height:100%; font-size:25px;" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:20%; height:100%;" class="btn btn-danger btn-lg" type="button" value="Send" id="allmsg_send"/>
 		</div>
 	</div>
 </body>
