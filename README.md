@@ -32,3 +32,12 @@
     menu.jsp 수정 
     HOME.jsp 추가
 
+2021-03-11
+   각 chat jsp id 다르게 설정
+   layout-default에 websocket 연결 및 각 id에 접근하도록 설정
+   logger 미출력 수정
+   
+2021-03-11(2)
+   MemberRESTController 작성
+   
+
