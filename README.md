@@ -1,8 +1,8 @@
 # SongTalk
-<div>2021-03-03 시작</div>
-   시스템 기본구성 적용 (servlet-context, root-context, handler, interceptor, log4j 추가)
-            pom.xml, web.xml 수정
-   테이블 관리
+<h2>2021-03-03 시작</h2>
+   <div>시스템 기본구성 적용 (servlet-context, root-context, handler, interceptor, log4j 추가)
+            pom.xml, web.xml 수정</div>
+   <div>테이블 관리</div>
 
 2021-03-04
    놀았다
@@ -44,4 +44,6 @@
    ChatRESTController 작성
    default-layout ajax 
    
-
+2021-03-15(1)
+   layout-default javascript 수정
+   bootstrap theme 수정
