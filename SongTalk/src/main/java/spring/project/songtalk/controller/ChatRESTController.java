@@ -1,5 +1,7 @@
 package spring.project.songtalk.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import spring.project.songtalk.domain.AllVO;
 import spring.project.songtalk.domain.MSGVO;
 import spring.project.songtalk.domain.RoomVO;
+import spring.project.songtalk.service.AllService;
 import spring.project.songtalk.service.MSGService;
 import spring.project.songtalk.service.RoomService;
 
@@ -33,6 +37,10 @@ public class ChatRESTController {
 	
 	@Autowired
 	private MSGService msgService;
+	
+	@Autowired
+	private AllService allService;
+	
 	
 	// MSG > create / select
 	// Room > update / select
@@ -108,4 +116,31 @@ public class ChatRESTController {
 		return new ResponseEntity<RoomVO>(vo, HttpStatus.OK);
 	} // end readRoom
 	
+	
+	// **************************************************************************************
+	// AllTable
+	
+	// Create
+	@PostMapping("/saveAll")
+	public ResponseEntity<Integer> saveAllMsg(@RequestBody AllVO vo, HttpServletRequest request) {
+		int result;
+		
+		try {
+			result = allService.create(vo);
+			logger.info("create() called : " + vo.toString());
+			
+			return new ResponseEntity<Integer>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Integer>(0, HttpStatus.OK);
+		}
+	} // end saveAllMsg()
+	
+	@GetMapping("/all/{allBno}")
+	public ResponseEntity<List<AllVO>> readAll (@PathVariable("allBno") int allBno, HttpServletRequest request) {
+		List<AllVO> list = allService.read(); // 여기에 bno 추가
+		logger.info("readAllMsg called");
+		
+		logger.info("allVO : " + list.toString());
+		return new ResponseEntity<List<AllVO>>(list, HttpStatus.OK);
+	} // end readAll()
 }

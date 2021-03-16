@@ -5,15 +5,17 @@ public class RoomVO {
 	private String roomTitle;
 	private String roomContent;
 	private int roomBno;
+	private int roomCount;
 	
 	public RoomVO () {}
 
-	public RoomVO(String roomUser, String roomTitle, String roomContent, int roomBno) {
+	public RoomVO(String roomUser, String roomTitle, String roomContent, int roomBno, int roomCount) {
 		super();
 		this.roomUser = roomUser;
 		this.roomTitle = roomTitle;
 		this.roomContent = roomContent;
 		this.roomBno = roomBno;
+		this.roomCount = roomCount;
 	}
 
 	public String getRoomUser() {
@@ -47,11 +49,19 @@ public class RoomVO {
 	public void setRoomBno(int roomBno) {
 		this.roomBno = roomBno;
 	}
+	
+	public int getRoomCount() {
+		return roomCount;
+	}
+	
+	public void setRoomCount(int roomCount) {
+		this.roomCount = roomCount;
+	}
 
 	@Override
 	public String toString() {
 		return "RoomVO [roomUser=" + roomUser + ", roomTitle=" + roomTitle + ", roomContent=" + roomContent
-				+ ", roomBno=" + roomBno + "]";
+				+ ", roomBno=" + roomBno + ", roomCount=" + roomCount + "]";
 	}
 	
 	

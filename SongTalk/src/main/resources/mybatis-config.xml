@@ -28,7 +28,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="roomTitle" value="room_title"/>
 		<property name="roomContent" value="room_content"/>
 		<property name="roomBno" value="room_bno"/>
+		<property name="roomCount" value="room_count"/>
 		
+		<!-- 전체 대화방 테이블 -->
+		<property name="stAllTable" value="st_all_table"/>
+		<property name="allBno" value="all_bno"/>
+		<property name="allSender" value="all_sender"/>
+		<property name="allContent" value="all_content"/>
 	</properties>
 	
 	<settings>
