@@ -9,12 +9,12 @@
    
 <h2>2021-03-05</h2>
   <div> &nbsp;- 테이블 수정(+ trigger, sequence)</div>
-  <div> &nbsp;- member > 기본기능 적용(vo-mapper-dao-service-controller)</div>
+  <div style="font-color:yellow;"> &nbsp;- member > 기본기능 적용(vo-mapper-dao-service-controller)</div>
    
 <h2>2021-03-07</h2>
   <div> &nbsp;- mapper 수정</div>
-  <div> &nbsp;- msg > 기본기능 적용(vo-mapper-dao-service-controller)</div>
-  <div> &nbsp;- room > 기본기능 적용(vo-mapper-dao-service-controller)</div>
+  <div style="font-color:yellow;"> &nbsp;- msg > 기본기능 적용(vo-mapper-dao-service-controller)</div>
+  <div style="font-color:yellow;"> &nbsp;- room > 기본기능 적용(vo-mapper-dao-service-controller)</div>
 
 <h2>2021-03-08</h2>
   <div> &nbsp;- membercontroller 작성</div>
@@ -35,7 +35,7 @@
 <h2>2021-03-11</h2>
   <div> &nbsp;- 각 chat jsp id 다르게 설정</div>
   <div> &nbsp;- layout-default에 websocket 연결 및 각 id에 접근하도록 설정</div>
-  <div> &nbsp;- logger 미출력 수정</div>
+  <div style="font-color:blue;"> &nbsp;- logger 미출력 수정</div>
    
 <h2>2021-03-11(2)</h2>
   <div> &nbsp;- MemberRESTController 작성</div>
@@ -53,4 +53,13 @@
   
 <h2>2021-03-16(1)</h2>
   <div> &nbsp;- register 디자인 </div>
-  <div> &nbsp;- websocket.open 오류 해결중!</
+  <div style="font-color:red;"> &nbsp;- websocket.open 오류 해결중!</div>
+  
+<h2>2021-03-16(2)</h2>
+  <div style="font-color:blue;"> &nbsp;- websocket 연결 성공!</div>
+  <div style="font-color:yellow;"> &nbsp;- allTable > DBTable, mybatis, mapper, vo, dao, service 추가</div>
+  <div> &nbsp;- ChatRESTController 수정</div>
+  
+// -------------------------------------------------------------------------
+<h2></h2>
+  <div> &nbsp;- </div>
