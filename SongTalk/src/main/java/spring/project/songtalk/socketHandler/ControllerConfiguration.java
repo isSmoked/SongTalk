@@ -32,6 +32,7 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter implements 
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		logger.info("registerWebSocketHandler() 호출");
 		registry.addHandler(echoHandler, "/songtalk/chat").setAllowedOrigins("*");
+		registry.addHandler(echoHandler, "/songtalk/member").setAllowedOrigins("*");
 	}
 	
 

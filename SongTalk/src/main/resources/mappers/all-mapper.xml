@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.project.songtalk.AllMapper">
+	<!-- insert, select, selectList -->
+	
+	<!--  insert -->
+	<insert id="insert">
+		insert into ${stAllTable}
+		(${allSender}, ${allContent})
+		values (#{allSender}, #{allContent})
+	</insert>
+	
+	<!-- selectList -->
+	<select id="select" resultType="allVO">
+		select * from ${stAllTable}
+		order by ${allBno} desc
+	</select>
+</mapper>

@@ -63,7 +63,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				}
 				
 			} else {	// 처음화면에서 로그인했을때
-				response.sendRedirect("/songtalk/");
+				response.sendRedirect("/songtalk");
 			}
 			
 			

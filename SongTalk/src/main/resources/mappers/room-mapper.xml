@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 채팅방 개설 -->
 	<insert id="insert">
 		insert into ${stRoomTable}
-		(${roomUser}, ${roomTitle}, ${roomContent})
-		values (#{roomUser}, #{roomTitle}, #{roomContent})
+		(${roomUser}, ${roomTitle}, ${roomContent}, ${roomCount})
+		values (#{roomUser}, #{roomTitle}, #{roomContent}, #{roomCount})
 	</insert>
 	
 	<!-- 채팅방 하나 가져오기 -->
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 채팅방 내용 갱신 -->
 	<update id="updateContent">
 		update ${stRoomTable}
-		set ${roomContent} = #{roomContent}
+		set ${roomContent} = #{roomContent}, ${roomCount} = #{roomCount}
 		where ${roomBno} = #{roomBno}
 	</update>
 	

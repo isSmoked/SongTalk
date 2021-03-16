@@ -27,8 +27,8 @@
 		<div style="font-size:25px; position:absolute; left:35%;">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  type="text" name="memberUserid"></div>
 		<div style="font-size:25px; position:absolute; left:35%; top:45%;">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="memberPassword" style="left:50%;"></div>
 		<p>&nbsp;</p>
-		<div style="font-size:25px; position:absolute; left:60%; top:60%; "><input style="width:80px; height:40px;" class="btn btn-lg btn-danger" type="submit" value="LOGIN"></div>
 		<input type="hidden" value="${targetUrl }" name="targetUrl" id="targetUrl">
+		<div style="font-size:25px; position:absolute; left:60%; top:60%; "><input style="width:80px; height:40px;" class="btn btn-lg btn-danger" type="submit" value="LOGIN"></div>
 	</form>
 	
 	
