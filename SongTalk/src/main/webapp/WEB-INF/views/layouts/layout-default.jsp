@@ -62,7 +62,7 @@
 			} // toastr
 			
 			$(document).ready(function(){
-				getRoom(); // 처음 실행시 채팅 내역을 보내준다.
+				// getRoom(); // 처음 실행시 채팅 내역을 보내준다.
 				
 				console.log('layout - 자바스크립트가 작동하나요?');
 				var printMSG = '';
@@ -72,7 +72,7 @@
 				
 				sock.open = function() {
 					console.log('websocket opened');
-				};
+				}
 				
 				// 수신
 				sock.onmessage = function (event) {

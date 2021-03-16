@@ -44,7 +44,7 @@ public class MemberController {
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("register_result", "success");
-			return "redirect:/member/main";
+			return "redirect:/";
 		} else {
 			reAttr.addFlashAttribute("register_result", "fail");
 			return "redirect:/member/login";

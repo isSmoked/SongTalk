@@ -33,7 +33,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			
 			String userid = getMemberId(session); // 접속한 유저의 http세션을 조회하여 id를 얻는 함수
 			if (userid != null) {	// 로그인 값이 있는 경우만
-				logger.info("�α��� ���� �־ �α��ε�! userid = " + userid);
+				logger.info("로그인 값이 있어 로그인 성공! userid = " + userid);
 				users.put(userid, session);   // 로그인중 개별유저 저장
 				sessions.add(session);
 			}
@@ -44,7 +44,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 			logger.info("***** handleTextMessage() 호출 message : " + message.getPayload());
 			// protocol : cmd , 발신인, 수신인, 대화방 이름
-			String msg = message.getPayload(); // �޾ƿ� �޽���
+			String msg = message.getPayload(); // 받아온 메세지
 			
 			// 들어오는 메시지 > ???
 			String[] strs = msg.split("[*]");
@@ -124,7 +124,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			logger.info("afterConnectionClosed " + session + ", " + status);
 			String senderId = getMemberId(session);
 			if(senderId != null) {	// 로그인 값이 있는 경우만
-				logger.info("로그인 값이 있어서 로그아웃가능 ! senderId : \" + senderId + \" 연결 종료됨");
+				logger.info("로그인 값이 있어서 로그아웃가능 ! senderId : " + senderId + " 연결 종료됨");
 				users.remove(senderId);
 			}
 			sessions.remove(session);

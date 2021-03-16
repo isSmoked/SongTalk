@@ -39,6 +39,9 @@ body {padding-top: 100px;}
         <li class="nav-item">
 	      <a class="nav-link">${loginId }님 환영합니다!</a>
 	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="member/logout"><button class="btn btn-danger">로그아웃</button></a>
+	    </li>
       </c:if>
       
       
