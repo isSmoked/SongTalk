@@ -9,7 +9,7 @@
    
 <h2>2021-03-05</h2>
   <div> &nbsp;- 테이블 수정(+ trigger, sequence)</div>
-  <div style="text-color:yellow;"> &nbsp;- member > 기본기능 적용(vo-mapper-dao-service-controller)</div>
+  <div> <p style="text-color:yellow;"> &nbsp;- member > 기본기능 적용(vo-mapper-dao-service-controller)</p></div>
    
 <h2>2021-03-07</h2>
   <div> &nbsp;- mapper 수정</div>
