@@ -50,3 +50,7 @@
    
 <h2>2021-03-15(2)</h2>
   <div> &nbsp;- 로그인, main, HOME, menu 디자인 </div>
+  
+<h2>2021-03-16(1)</h2>
+  <div> &nbsp;- register 디자인 </div>
+  <div> &nbsp;- websocket.open 오류 해결중!</
