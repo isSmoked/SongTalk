@@ -14,17 +14,23 @@
 
 </head>
 <body>
-	<h2>회원가입</h2>
+	
+	<div class="jumbotron bg-white" style="right:0; width:50%;">
+		  <h1>Register</h1>
+		  <h3>&nbsp;</h3>
+		  <h4>&nbsp;&nbsp;&nbsp;Join our Service!</h4>
+	</div>
 	
 	<form action="register" method="POST">
-		 아이디 : <input type="text" name="memberUserid">
-		 비밀번호 : <input type="password" name="memberPassword">
-		 비밀번호 확인 : <input type="password" id="memberPasswordTest">
-		 이메일 : <input type="email" name="memberEmail">
-		 
+		<div style="font-size:25px; position:absolute; left:30%;">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="left:80%" type="text" name="memberUserid"></div>
+		<div style="font-size:25px; position:absolute; left:30%; top:46%">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="left:80%" type="text" name="memberNickname"></div>
+		<div style="font-size:25px; position:absolute; left:30%; top:56%;">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="memberPassword" style="left:50%;"></div>
+		<div style="font-size:25px; position:absolute; left:30%; top:66%;">비밀번호 확인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="memberPassword" style="left:50%;"></div>
+		<div style="font-size:25px; position:absolute; left:30%; top:76%;">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" name="memberEmail" style="left:50%;"></div>
+		<p>&nbsp;</p>
+		<div style="font-size:25px; position:absolute; left:60%; top:86%; "><input style="width:80px; height:40px;" class="btn btn-lg btn-danger" type="submit" value="REGISTER"></div>
 		 <!-- TODO : AJAX 구현하기 -->
 		 <!-- TODO : 널 예외처리하기 -->
-		 <input type="submit" value="가입하기">
 	</form>
 </body>
 </html>

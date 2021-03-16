@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="memberUserid" value="member_userid"/>
 		<property name="memberPassword" value="member_password"/>
 		<property name="memberNickname" value="member_nickname"/>
-		<property name="memberEmail" value="member_eail"/>
+		<property name="memberEmail" value="member_email"/>
 		<property name="memberBno" value="member_bno"/>
 		
 		<!-- 메시지 테이블 -->
