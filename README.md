@@ -60,6 +60,9 @@
   <div style="font-color:yellow;"> &nbsp;- allTable > DBTable, mybatis, mapper, vo, dao, service 추가</div>
   <div> &nbsp;- ChatRESTController 수정</div>
   
+<h2>2021-03-17(1)</h2>
+  <div> &nbsp;-stAllTable -allcount 컬럼 추가 </div>
+  
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
