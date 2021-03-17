@@ -35,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="allBno" value="all_bno"/>
 		<property name="allSender" value="all_sender"/>
 		<property name="allContent" value="all_content"/>
+		<property name="allCount" value="all_count"/>
 	</properties>
 	
 	<settings>

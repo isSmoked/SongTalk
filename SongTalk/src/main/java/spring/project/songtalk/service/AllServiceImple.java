@@ -26,9 +26,9 @@ public class AllServiceImple implements AllService {
 	}
 
 	@Override
-	public List<AllVO> read() {
+	public List<AllVO> read(int allCount) {
 		logger.info("read() called");
-		return dao.select();
+		return dao.select(allCount);
 	}
 
 }

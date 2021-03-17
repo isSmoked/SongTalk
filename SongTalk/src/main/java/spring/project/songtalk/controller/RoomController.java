@@ -33,7 +33,12 @@ public class RoomController {
 	@GetMapping("/HOME")
 	public void HOMEGET() {
 		logger.info("HOME() 호출");
-		System.out.println("aaaaa");
+	}
+	
+	/* 채팅방 입력창 */
+	@GetMapping("/register")
+	public void registerGET() {
+		logger.info("registerGET() 호출");
 	}
 	
 	/* 채팅방 개설 */
@@ -48,10 +53,10 @@ public class RoomController {
 		
 		if (result == 1) {
 			reAttr.addFlashAttribute("create_result", "success");
-			return "redirect:/songtalk/chat/roomDetail";
+			return "redirect:/chat/HOME";
 		} else {
 			reAttr.addFlashAttribute("create_result", "fail");
-			return "redirect:/songtalk/chat/HOME";
+			return "redirect:/chat/HOME";
 		}
 	} // end registerPOST()
 	

@@ -24,6 +24,7 @@
 		<!-- 채팅 내역 -->
 		<div id="allchatBlock"></div>
 		
+		<input type="hidden" id="bno" value="0">
 		<!-- 입력 창 -->
 		<div>
 			<input type="hidden" id="msgUserid" value="${loginId }"/>

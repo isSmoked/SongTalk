@@ -9,5 +9,5 @@ public interface AllService {
 	public abstract int create(AllVO vo);
 	
 	// 전체채팅 메시지 선택
-	public abstract List<AllVO> read();
+	public abstract List<AllVO> read(int allCount);
 }
