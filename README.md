@@ -62,7 +62,8 @@
   
 <h2>2021-03-17(1)</h2>
   <div> &nbsp;- stAllTable -allcount 컬럼 추가 </div>
-  <label style="font-color:red;">aaa</label>
+  <div> &nbsp;- 전체채팅 完 (디자인만 만지면된다)</div>
+  
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
