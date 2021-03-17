@@ -48,20 +48,23 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 		</a>
 		
 		<!-- 대화방 추가 -->
+		<c:if test="${target[4] ne 'register' }">
 		<a href="/songtalk/chat/register" class="list-group-item bg-white text-danger" style="height:50px; font-size:20px;">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true">   대화방생성 </span>
 		</a>
-		
+		</c:if>
 		<!-- 대화방채팅 -->
 		<c:forEach items="${roomList }" var="vo">
-			<a href="/songtalk/chat/detail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger" style="height:100px; font-size:20px;">
+			<a href="/songtalk/chat/roomDetail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger" style="height:100px; font-size:20px;">
 				${vo.roomTitle }
 				<c:set var="attendant" value="${fn:split(vo.roomUser, ',') }"></c:set>
 				<c:forEach var="users" items="${attendant }">
 					<p style="font-size: 10px;">${users }&nbsp;&nbsp;&nbsp;</p><span class="badge" style="background-color:black;">14</span>
 				</c:forEach>
 			</a>
+			<p>aaa</p>
 		</c:forEach>
+		
 	</div>
 	
 	</c:if>

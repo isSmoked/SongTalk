@@ -9,13 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  insert -->
 	<insert id="insert">
 		insert into ${stAllTable}
-		(${allSender}, ${allContent})
-		values (#{allSender}, #{allContent})
+		(${allSender}, ${allContent}, ${allCount})
+		values (#{allSender}, #{allContent}, #{allCount})
 	</insert>
 	
 	<!-- selectList -->
 	<select id="select" resultType="allVO">
 		select * from ${stAllTable}
-		order by ${allBno} desc
+		where ${allCount} = #{allCount}
+		order by ${allBno}
 	</select>
 </mapper>

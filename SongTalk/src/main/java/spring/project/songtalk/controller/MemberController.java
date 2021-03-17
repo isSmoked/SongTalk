@@ -1,6 +1,9 @@
 package spring.project.songtalk.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -79,6 +82,23 @@ public class MemberController {
 		}
 	} // end loginPOST()
 	// ----------------------------------------------------------
+	
+	@RequestMapping(value = "/logout")
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		logger.info("logout() called");
+		HttpSession session = request.getSession();
+		String referer = request.getHeader("referer");
+		Object check = session.getAttribute("loginId");
+		
+		if (check != null) {
+			session.removeAttribute("loginId");
+			session.setAttribute("loginResult", "logout");
+			response.sendRedirect("/songtalk/");
+		} else {
+			response.sendRedirect(referer);
+		}
+	} // end logout()
+	
 	
 	/* 정보수정 */ // ---------------------------------------------
 	@GetMapping("/update")

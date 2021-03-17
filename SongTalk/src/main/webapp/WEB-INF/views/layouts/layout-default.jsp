@@ -63,6 +63,8 @@
 			
 			$(document).ready(function(){
 				// getRoom(); // 처음 실행시 채팅 내역을 보내준다.
+				var bno = $('#bno').val(); // 번호
+				
 				getall();
 				
 				console.log('layout - 자바스크립트가 작동하나요?');
@@ -151,7 +153,7 @@
 					
 					$.ajax({
 						type : 'post',
-						url : 'chat/saveAll',
+						url : '/songtalk/chat/achat',
 						headers : {
 							'Content-Type' : 'application/json',
 							'H-HTTP-Method-Override' : 'POST'
@@ -177,27 +179,29 @@
 				// *******************************************************************************
 				// ajax로 전체채팅내역 가져오기 (all)
 				function getall() {
-					console.log('getall() 호출');
-					var url = 'all/{allBno}';
-					console.log('getall() url : ' + url);
+					var url = 'achat/all/' + bno;
+					console.log('url : ' + url);
 					$.getJSON (
-							url, function(jsonData){
+							url, 
+							function(jsonData){
 								console.log('받아온 json데이터 : ' + jsonData);
 								var list = '';
+								const chat = document.getElementById('allchatBlock');
+								chat.innerHTML = '';
+									
 								$(jsonData).each(function() {
 									var content = this.allContent;
 									var sender = this.allSender;
-									const chat = document.getElementById('allchatBlock');
 									
 									if (sender === '${loginId}') { // 내 메시지
-										chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right;">' + content + '</p>';
+										chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p>';
 							  			console.log('sent message');
 							  			
-									} else if (caller !== '${loginId}') { // 내 메시지가 아닐때
-											chat.innerHTML += '<p id="receivedMsg" style="text-align:left">' + sender + ' : ' + content + '</p>';
+									} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
+											chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
 							  				console.log('received message');
 									}	
-									
+									console.log('1');
 									$('#allchatBlock').scrollTop = $('#allchatBlock').scrollHeight;
 									$('#allmsgContent').val('');
 								});
@@ -222,7 +226,7 @@
 					console.log(obj);
 					$.ajax({
 						type : 'post',
-						url : 'chat',
+						url : 'tchat',
 						headers : {
 							'Content-Type' : 'application/json',
 							'H-HTTP-Method-Override' : 'POST'
@@ -257,7 +261,7 @@
 					
 					$.ajax({
 						type : 'put',
-						url : 'chat/' + roomBno,
+						url : 'tchat/' + roomBno,
 						headers : {
 							'Content-Type' : 'application/json',
 							'X-HTTP-Medhod-Override' : 'PUT'
@@ -273,7 +277,7 @@
 				function getroom() {
 					console.log('getroom() 호출');
 					var roomBno = '${vo.roomBno}';
-					var url = 'chat/roomall' + roomBno;
+					var url = 'tchat/roomall' + roomBno;
 					console.log('getroomt() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
@@ -301,7 +305,7 @@
 				function getmsg(bno) {
 					console.log('getmsg() 호출');
 					var msgBno = bno;
-					var url = 'chat/msgall' + msgBno;
+					var url = 'tchat/msgall' + msgBno;
 					console.log('getmsg() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
@@ -321,15 +325,16 @@
 				
 				// ***********************************************
 				function printAllchat(printMSG) {
+					printMSG = '';
 					if (cmd === 'roomCHAT'){ // 대화방 채팅
 						if (title === '${vo.roomTitle}') {	// 해당 대화방에만 메시지 출력
 							const chat = document.getElementById('roomchatBlock');
 							// caller + content
 							if (caller === '${loginId}') { 		  // 내 메시지
-								chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right;">' + content + '</p>';
+								chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:20px;">' + content + '</p>';
 					  			console.log('sent message');
 							} else if (caller !== '${loginId}') { // 내 메시지가 아닐때
-								chat.innerHTML += '<p id="receivedMsg" style="text-align:left">' + caller + ' : ' + content + '</p>';
+								chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:20px;">' + caller + ' : ' + content + '</p>';
 				  				console.log('received message');
 							}
 							$('#roomchatBlock').scrollTop = $('#roomchatBlock').scrollHeight;

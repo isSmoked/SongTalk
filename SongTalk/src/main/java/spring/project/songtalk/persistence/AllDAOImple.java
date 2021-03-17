@@ -30,9 +30,9 @@ public class AllDAOImple implements AllDAO {
 	}
 
 	@Override
-	public List<AllVO> select() {
+	public List<AllVO> select(int allCount) {
 		logger.info("select() called");
-		return sqlSession.selectList(NAMESPACE + ".select");
+		return sqlSession.selectList(NAMESPACE + ".select", allCount);
 	}
 
 }
