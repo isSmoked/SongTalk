@@ -62,7 +62,7 @@
   
 <h2>2021-03-17(1)</h2>
   <div> &nbsp;- stAllTable -allcount 컬럼 추가 </div>
-  
+  <label style="font-color:red;">aaa</label>
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
