@@ -65,6 +65,13 @@
   <div> &nbsp;- 전체채팅 完 (디자인만 만지면된다)</div>
   <div> &nbsp;- MemberController - logout 작성</div>
   <div> &nbsp;- login-post 경로깨짐 수정해야한다!!</div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+  
+<h2></h2>
+  <div> &nbsp;- layout - memu > roomlist 출력</div>
+  <div> &nbsp;- </div>
+  <div> &nbsp;- </div>
+  
+  
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
