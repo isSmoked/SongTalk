@@ -12,7 +12,7 @@ public interface RoomService {
 	public abstract RoomVO read(int roomBno);
 	
 	// 채팅방 리스트
-	public abstract List<RoomVO> read();
+	public abstract List<RoomVO> read(String userid);
 	
 	// 채팅방 정보수정
 	public abstract int updateInfo(int roomBno);

@@ -9,7 +9,7 @@ public interface RoomDAO {
 	public abstract int insert(RoomVO vo);
 	
 	// 채팅방 리스트
-	public abstract List<RoomVO> select();
+	public abstract List<RoomVO> select(String userid);
 	
 	// 채팅방 선택
 	public abstract RoomVO select(int roomBno);
@@ -27,5 +27,5 @@ public interface RoomDAO {
 	public abstract int delete(int roomBno);
 	
 	// 채팅방 키워드 검색(title)
-	public abstract List<RoomVO> select(String keyword);
+	public abstract List<RoomVO> selectk(String keyword); // 이름 바꿨다 조심!
 }

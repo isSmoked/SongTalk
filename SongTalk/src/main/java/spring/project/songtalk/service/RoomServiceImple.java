@@ -32,9 +32,9 @@ public class RoomServiceImple implements RoomService {
 	}
 
 	@Override
-	public List<RoomVO> read() {
+	public List<RoomVO> read(String userid) {
 		logger.info("readList() 호출");
-		return dao.select();
+		return dao.select(userid);
 	}
 
 	@Override

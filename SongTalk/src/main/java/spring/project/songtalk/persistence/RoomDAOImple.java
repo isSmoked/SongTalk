@@ -29,9 +29,9 @@ public class RoomDAOImple implements RoomDAO {
 	}
 
 	@Override
-	public List<RoomVO> select() {
+	public List<RoomVO> select(String userid) {
 		logger.info("selectList() 호출");
-		return sqlSession.selectList(NAMESPACE + ".selectList");
+		return sqlSession.selectList(NAMESPACE + ".selectList", userid);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class RoomDAOImple implements RoomDAO {
 	}
 
 	@Override
-	public List<RoomVO> select(String keyword) {
+	public List<RoomVO> selectk(String keyword) {
 		logger.info("select() 호출");
 		return sqlSession.selectList(NAMESPACE + ".selectKeyword", keyword);
 	}

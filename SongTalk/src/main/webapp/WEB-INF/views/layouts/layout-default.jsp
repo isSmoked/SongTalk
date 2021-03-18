@@ -62,10 +62,10 @@
 			} // toastr
 			
 			$(document).ready(function(){
-				// getRoom(); // 처음 실행시 채팅 내역을 보내준다.
 				var bno = $('#bno').val(); // 번호
 				
-				getall();
+				getroom(); // 처음 실행시 채팅방의 내역을 보내준다.
+				getall();  // 처음 실행시 전체채팅의 내역을 보내준다.
 				
 				console.log('layout - 자바스크립트가 작동하나요?');
 				var printMSG = '';
@@ -198,10 +198,10 @@
 							  			console.log('sent message');
 							  			
 									} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
-											chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
-							  				console.log('received message');
+										chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
+						  				console.log('received message');
 									}	
-									console.log('1');
+									
 									$('#allchatBlock').scrollTop = $('#allchatBlock').scrollHeight;
 									$('#allmsgContent').val('');
 								});
@@ -213,9 +213,10 @@
 				// *******************************************************************************
 				// ajax로 message 저장 (msg) .1
 				function saveMsg(message) {
+					console.log('1. message save!')
 					var content = $('#roommsgContent').val();
 					// 게시판 번호를 받아온다!
-					var roomBno = '${vo.roomBno}';
+					var roomBno = '${roomVO.roomBno}';
 					
 					var obj = {
 							'msgSender' : '${loginId}',
@@ -226,7 +227,7 @@
 					console.log(obj);
 					$.ajax({
 						type : 'post',
-						url : 'tchat',
+						url : '/songtalk/chat/tchat',
 						headers : {
 							'Content-Type' : 'application/json',
 							'H-HTTP-Method-Override' : 'POST'
@@ -253,8 +254,8 @@
 				// *******************************************************************************
 				// ajax로 채팅내역 추가 .2
 				function setRoom() {
-					console.log('setRoom() 호출');
-					var roomBno = '${vo.roomBno}';
+					console.log('2. room save!')
+					var roomBno = '${roomVO.roomBno}';
 					var msg = '${msgBno}';
 					
 					console.log('savedMsg' + roomBno);
@@ -275,10 +276,10 @@
 				// *******************************************************************************
 				// ajax로 채팅내역 가져오기 (room) .3
 				function getroom() {
-					console.log('getroom() 호출');
-					var roomBno = '${vo.roomBno}';
-					var url = 'tchat/roomall' + roomBno;
-					console.log('getroomt() url : ' + url);
+					console.log('3. room get!')
+					var roomBno = '${roomVO.roomBno}';
+					var url = 'tchat/roomall/' + roomBno;
+					console.log('getroom() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
 								console.log('받아온 json데이터 : ' + jsonData);
@@ -292,6 +293,7 @@
 								var msgBnos = msg.split(',');
 								for (var i = 0; i < msgBnos.length; i++){
 									getmsg(msgBnos[i]);
+									console.log('getmsg : ' + msgBnos[i]);
 								}
 								
 								// 채팅내역 출력
@@ -303,9 +305,9 @@
 				// ***************************************************************
 				// ajax로 채팅내역 가져오기 (msg) .4
 				function getmsg(bno) {
-					console.log('getmsg() 호출');
+					console.log('4. message get!')
 					var msgBno = bno;
-					var url = 'tchat/msgall' + msgBno;
+					var url = 'tchat/msgall/' + msgBno;
 					console.log('getmsg() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
@@ -317,6 +319,23 @@
 								console.log('msgSender : ' + sender + ', msgContent : ' + content);
 								
 								printMSG += sender + " : " + content;
+								
+								if (cmd === 'roomCHAT'){ // 대화방 채팅
+									if (title === '${vo.roomTitle}') {	// 해당 대화방에만 메시지 출력
+										const chat = document.getElementById('roomchatBlock');
+										// caller + content
+										if (sender === '${loginId}') { // 내 메시지
+											chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p>';
+								  			console.log('sent message');
+								  			
+										} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
+											chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
+							  				console.log('received message');
+										}	
+										$('#roomchatBlock').scrollTop = $('#roomchatBlock').scrollHeight;
+										$('#roommsgContent').val('');
+									}
+								} 
 								
 								// 채팅내역 출력
 								printAllchat(printMSG);
