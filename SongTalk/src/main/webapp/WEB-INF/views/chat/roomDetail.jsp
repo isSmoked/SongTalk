@@ -16,7 +16,10 @@
 </head>
 <body>
 
-	<h2>대화방</h2>
+	<div class="page-header">
+  		<h1>${roomVO.roomTitle }대화방 &nbsp;&nbsp;&nbsp;&nbsp;<small>start chat with everyone!</small></h1>
+	</div>
+	
 	<!-- chat -->
 	<div id="chat">
 		<!-- 채팅 내역 -->
@@ -27,8 +30,8 @@
 			<input type="hidden" id="msgUserid" value="${loginId }"/>
 		</div>
 		
-		<div>
-			<input type="text" id="roommsgContent" value="" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-dark" type="button" value="보내기" id="roommsg_send"/>
+		<div style="position: fixed; bottom: 30px; width:500px; height:40px;">
+			<input type="text" id="roommsgContent" value="" style="width:70%; height:100%; font-size:25px;" autofocus/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:20%; height:100%;" class="btn btn-danger btn-lg" type="button" value="Send" id="roommsg_send"/>
 		</div>
 	</div>
 	

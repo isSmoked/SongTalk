@@ -27,7 +27,7 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 <body>
 
 	<c:set var="wer" value="${pageContext.request.requestURL}" />
-		
+		<label>${wer }</label>
 	<c:set var="target" value="${fn:split(wer, '[/]')}" />
 		
 	<c:if test="${target[3] eq 'chat' }">
@@ -47,28 +47,49 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 			<span class="badge text-danger" style="background-color:white;">14</span>
 		</a>
 		
+		<!-- 대화방채팅 -->
+		<div id="roomList">
+			
+		</div>
+		
 		<!-- 대화방 추가 -->
 		<c:if test="${target[4] ne 'register' }">
-		<a href="/songtalk/chat/register" class="list-group-item bg-white text-danger" style="height:50px; font-size:20px;">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true">   대화방생성 </span>
-		</a>
-		</c:if>
-		<!-- 대화방채팅 -->
-		<c:forEach items="${roomList }" var="vo">
-			<a href="/songtalk/chat/roomDetail?bno=${vo.roomBno }" class="list-group-item bg-light text-danger" style="height:100px; font-size:20px;">
-				${vo.roomTitle }
-				<c:set var="attendant" value="${fn:split(vo.roomUser, ',') }"></c:set>
-				<c:forEach var="users" items="${attendant }">
-					<p style="font-size: 10px;">${users }&nbsp;&nbsp;&nbsp;</p><span class="badge" style="background-color:black;">14</span>
-				</c:forEach>
+			<a href="/songtalk/chat/register" class="list-group-item bg-white text-danger" style="height:50px; font-size:20px;">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true">   대화방생성 </span>
 			</a>
-			<p>aaa</p>
-		</c:forEach>
-		
+		</c:if>
 	</div>
 	
 	</c:if>
 	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			getRoomList();
+			function getRoomList() {
+				var userid = '${loginId}';
+				var url = 'list/all/' + userid;
+				console.log('url : ' + url);
+				$.getJSON(url, function(jsonData){
+					const list = document.getElementById('roomList');
+					list.innerHTML = '';
+					
+					console.log(jsonData);
+					$(jsonData).each(function(){
+						// title, userid
+						var title = this.roomTitle;
+						var user = this.roomUser;
+						var content = this.roomContent;
+						var bno = this.roomBno;
+						console.log('title : ' + title + ', user : ' + user);
+						
+						list.innerHTML += '<a href="roomDetail?bno=' + bno + '" class="list-group-item bg-light text-danger" style="height:100px; font-size:20px; font-weight:bold;">'
+										+ title + '<p style="font-size:5px;">&nbsp;</p><input type="hidden" name="roomBno" value="'+ bno + '"><p style="font-size:18px; font-weight:normal; color:grey;">' + user + '</p></a>';
+						console.log('roomList!');
+					}) // end json.each()
+				}); // end getJSON
+			}
+		}); // end document.ready()
+	</script>
 
 </body>
 </html>	

@@ -69,13 +69,14 @@ public class RoomController {
 	
 	/* 특정 대화방 */
 	@GetMapping("/roomDetail")
-	public String detailROOMGET(Integer roomBno, Model model) {
-		logger.info("detailROOMGET() 호출");
+	public void detailROOMGET(Integer bno, Model model) {
+		logger.info("detailROOMGET() 호출 roomBno : " + bno);
 		
-		RoomVO vo = roomService.read(roomBno);
+		RoomVO vo = roomService.read(bno);
+		logger.info(vo.toString());
 		model.addAttribute("roomVO", vo);
 		
-		return "redirect:/chat/roomDetail?bno=" + roomBno;
+		
 	} // end detailROOMGET()
 	
 	/* 챗봇방 */
