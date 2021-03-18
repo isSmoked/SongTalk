@@ -66,10 +66,10 @@
   <div> &nbsp;- MemberController - logout 작성</div>
   <div> &nbsp;- login-post 경로깨짐 수정해야한다!!</div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
   
-<h2></h2>
+<h2>2021-03-18</h2>
   <div> &nbsp;- layout - memu > roomlist 출력</div>
-  <div> &nbsp;- </div>
-  <div> &nbsp;- </div>
+  <div> &nbsp;- roomDetail 수정</div>
+  <div> &nbsp;- roomDetail 메시지 저장 오류! </div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
   
   
 // -------------------------------------------------------------------------
