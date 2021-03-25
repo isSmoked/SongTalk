@@ -17,7 +17,7 @@
 <body>
 
 	<div class="page-header">
-  		<h1>${roomVO.roomTitle }대화방 &nbsp;&nbsp;&nbsp;&nbsp;<small>start chat with everyone!</small></h1>
+  		<h1>${roomVO.roomTitle } 대화방 &nbsp;&nbsp;&nbsp;&nbsp;<small>start chat with everyone!</small></h1>
 	</div>
 	
 	<!-- chat -->

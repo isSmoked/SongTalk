@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 메시지 저장 -->
 	<insert id="insert">
 		insert into ${stMSGTable}
-		(${msgSender}, ${msgReceiver}, ${msgContent}, ${msgRoom})
-		values (#{msgSender}, #{msgReceiver}, #{msgContent}, #{msgRoom})
+		(${msgSender}, ${msgContent}, ${msgRoom})
+		values (#{msgSender}, #{msgContent}, #{msgRoom})
 	</insert>
 	
 	<!-- 메시지 한줄 가져오기 -->
@@ -33,7 +33,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 제일 최근 메시지 가져오기 -->
 	<select id="selectNew" resultType="MSGVO">
-		select * from ${stMSGTable}
-		ORDER BY rownum DESC LIMIT 1
+		SELECT * FROM(SELECT *  FROM ${stMSGTable}
+    		ORDER BY ROWNUM DESC)
+		WHERE ROWNUM = 1
 	</select>
 </mapper>
