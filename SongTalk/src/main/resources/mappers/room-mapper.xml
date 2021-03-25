@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 채팅방 내용 갱신 -->
 	<update id="updateContent">
 		update ${stRoomTable}
-		set ${roomContent} = #{roomContent}, ${roomCount} = #{roomCount}
+		set ${roomContent} = #{roomContent}
 		where ${roomBno} = #{roomBno}
 	</update>
 	
@@ -59,4 +59,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete ${stRoomTable}
 		where ${roomBno} = #{roomBno}
 	</delete>
+	
 </mapper>

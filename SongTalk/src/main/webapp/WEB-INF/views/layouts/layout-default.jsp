@@ -63,9 +63,13 @@
 			
 			$(document).ready(function(){
 				var bno = $('#bno').val(); // 번호
+				var beforeMsg = "";			// 이전 저장되어 있던 msgbno에 추가해서 저장할 것이다.
+											// saveMsg에서 저장된 msg의 bno를 따와서 
 				
+											
 				getroom(); // 처음 실행시 채팅방의 내역을 보내준다.
 				getall();  // 처음 실행시 전체채팅의 내역을 보내준다.
+				var title = '${roomVO.roomTitle}';
 				
 				console.log('layout - 자바스크립트가 작동하나요?');
 				var printMSG = '';
@@ -109,8 +113,8 @@
 			  			// cmd, caller, receiver, title, content
 			  			var cmd = 'roomCHAT';
 			  			var caller = '${loginId}';
-			  			var receiver = '${vo.roomReceiver}'; // TODO : 채팅방유저 split 구현하고 오기
-			  			var title = '${vo.roomTitle}';
+			  			var receiver = '${roomVO.roomUser}'; // TODO : 채팅방유저 split 구현하고 오기
+			  			var title = '${roomVO.roomTitle}';
 			  			var content = $('#roommsgContent').val();
 			  			
 			  			var message = cmd + '*' + caller + '*' + receiver + '*' + title + '*' + content; 
@@ -220,14 +224,15 @@
 					
 					var obj = {
 							'msgSender' : '${loginId}',
-							'msgReceiver' : ' ',
 							'msgContent' : content,
 							'msgRoom' : roomBno
 						};
+					
 					console.log(obj);
 					$.ajax({
 						type : 'post',
 						url : '/songtalk/chat/tchat',
+						async : false,
 						headers : {
 							'Content-Type' : 'application/json',
 							'H-HTTP-Method-Override' : 'POST'
@@ -236,12 +241,13 @@
 						success : function(result, status) {
 							console.log(result);
 							console.log(status);
-							if (result === 1) {
-								sock.send(message);	
-								console.log('Websocket msg 저장성공!');
-								setRoom();
-								getRoom();
-							}
+							
+							// result == 1 삭제
+							sock.send(message);	
+							console.log('Websocket msg 저장성공!');
+							setRoom();
+							
+							
 						}, // end success
 						error : function(result, status) {
 							console.log('result : ' + result);
@@ -254,15 +260,16 @@
 				// *******************************************************************************
 				// ajax로 채팅내역 추가 .2
 				function setRoom() {
-					console.log('2. room save!')
+					console.log('2. room save!');
 					var roomBno = '${roomVO.roomBno}';
 					var msg = '${msgBno}';
 					
-					console.log('savedMsg' + roomBno);
+					console.log('savedMsg 저장될 채팅방 : ' + roomBno);
+					console.log('저장된 메시지 : ' + msg);
 					
 					$.ajax({
 						type : 'put',
-						url : 'tchat/' + roomBno,
+						url : '/songtalk/chat/tchat/' + roomBno,
 						headers : {
 							'Content-Type' : 'application/json',
 							'X-HTTP-Medhod-Override' : 'PUT'
@@ -270,6 +277,15 @@
 						data : JSON.stringify({
 							'roomContent' : msg
 						}),
+						success : function(result) {
+							console.log("2. result success : " + result);
+							
+							// 3. getroom 호출
+							getroom();
+						},
+						error : function (result) {
+							console.log("2. result error : " + result);
+						}
 					})
 				}
 				
@@ -278,7 +294,7 @@
 				function getroom() {
 					console.log('3. room get!')
 					var roomBno = '${roomVO.roomBno}';
-					var url = 'tchat/roomall/' + roomBno;
+					var url = '/songtalk/chat/tchat/roomall/' + roomBno;
 					console.log('getroom() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
@@ -320,30 +336,33 @@
 								
 								printMSG += sender + " : " + content;
 								
-								if (cmd === 'roomCHAT'){ // 대화방 채팅
-									if (title === '${vo.roomTitle}') {	// 해당 대화방에만 메시지 출력
-										const chat = document.getElementById('roomchatBlock');
-										// caller + content
-										if (sender === '${loginId}') { // 내 메시지
-											chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p>';
-								  			console.log('sent message');
-								  			
-										} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
-											chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
-							  				console.log('received message');
-										}	
-										$('#roomchatBlock').scrollTop = $('#roomchatBlock').scrollHeight;
-										$('#roommsgContent').val('');
-									}
-								} 
+								// cmd = roomCHAT 지움
+								if (title === '${roomVO.roomTitle}') {	// 해당 대화방에만 메시지 출력
+									const chat = document.getElementById('roomchatBlock');
+									
+									// caller + content
+									if (sender === '${loginId}') { // 내 메시지
+										chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p>';
+							  			console.log('sent message');
+							  			
+									} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
+										chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
+						  				console.log('received message');
+									}	
+									$('#roomchatBlock').scrollTop = $('#roomchatBlock').scrollHeight;
+									$('#roommsgContent').val('');
+								}
 								
 								// 채팅내역 출력
-								printAllchat(printMSG);
+								/*printAllchat(printMSG);*/
+								
 							}); // end callback(), getJSON()
 				} // end getAllchat()
 				
+				// *************************************************************
+				
 				// ***********************************************
-				function printAllchat(printMSG) {
+				/*function printAllchat(printMSG) {
 					printMSG = '';
 					if (cmd === 'roomCHAT'){ // 대화방 채팅
 						if (title === '${vo.roomTitle}') {	// 해당 대화방에만 메시지 출력
@@ -360,7 +379,7 @@
 							$('#roommsgContent').val('');
 						}
 					} 
-				} // end printAllchat()
+				} // end printAllchat()*/
 
 
 				

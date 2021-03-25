@@ -4,18 +4,16 @@ import java.util.Date;
 
 public class MSGVO {
 	private String msgSender;
-	private String msgReceiver;
 	private String msgContent;
 	private Date msgDate;
 	private int msgBno;
-	private int msgRoom;		// 방 번호 저장용
+	private int msgRoom;		
 	
 	public MSGVO () {}
 
-	public MSGVO(String msgSender, String msgReceiver, String msgContent, Date msgDate, int msgBno, int msgRoom) {
+	public MSGVO(String msgSender, String msgContent, Date msgDate, int msgBno, int msgRoom) {
 		super();
 		this.msgSender = msgSender;
-		this.msgReceiver = msgReceiver;
 		this.msgContent = msgContent;
 		this.msgDate = msgDate;
 		this.msgBno = msgBno;
@@ -28,14 +26,6 @@ public class MSGVO {
 
 	public void setMsgSender(String msgSender) {
 		this.msgSender = msgSender;
-	}
-
-	public String getMsgReceiver() {
-		return msgReceiver;
-	}
-
-	public void setMsgReceiver(String msgReceiver) {
-		this.msgReceiver = msgReceiver;
 	}
 
 	public String getMsgContent() {
@@ -72,7 +62,7 @@ public class MSGVO {
 
 	@Override
 	public String toString() {
-		return "MSGVO [msgSender=" + msgSender + ", msgReceiver=" + msgReceiver + ", msgContent=" + msgContent
+		return "MSGVO [msgSender=" + msgSender + ", msgContent=" + msgContent
 				+ ", msgDate=" + msgDate + ", msgBno=" + msgBno + ", msgRoom=" + msgRoom + "]";
 	};
 	

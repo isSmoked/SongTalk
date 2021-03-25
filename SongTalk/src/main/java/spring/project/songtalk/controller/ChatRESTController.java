@@ -44,7 +44,7 @@ public class ChatRESTController {
 	// Create
 	@PostMapping()
 	public ResponseEntity<Integer> saveMsg(@RequestBody MSGVO vo, HttpServletRequest request) {
-		logger.info("saveMsg : " + vo.toString());
+		logger.info("saveMsg() called : " + vo.toString());
 		int result;
 		
 		try {
@@ -55,6 +55,7 @@ public class ChatRESTController {
 			HttpSession session = request.getSession();
 			MSGVO mvo = msgService.readNew();
 			session.setAttribute("msgBno", mvo.getMsgBno());
+			logger.info("msgBno : *********** " + mvo.getMsgBno());
 		
 			return new ResponseEntity<Integer>(result, HttpStatus.OK);
 		} catch (Exception e) {
@@ -77,7 +78,7 @@ public class ChatRESTController {
 	// RoomTable
 	
 	// Update
-	@PutMapping()
+	@PutMapping("/{roomBno}")
 	public ResponseEntity<String> updateRoom (@PathVariable("roomBno")int roomBno,
 				@RequestBody RoomVO vo, HttpServletRequest request) {
 		logger.info("updateRoom call bno = " + roomBno);
@@ -85,8 +86,14 @@ public class ChatRESTController {
 		
 		HttpSession session = request.getSession();
 		int msgBno = (Integer)session.getAttribute("msgBno");
+		
+		// msgBno
+		logger.info("GET NUMBER : " + vo.getRoomContent());
+		logger.info("ADD NUMBER : " + msgBno);
+		
 		// insert 'bno' into chatRoom
 		vo.setRoomContent(vo.getRoomContent() + "," + msgBno);
+		vo.setRoomBno(roomBno);
 		logger.info("updated vo = " + vo.toString());
 		
 		try {
