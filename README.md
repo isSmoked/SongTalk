@@ -73,7 +73,7 @@
   
 <h2>2021-03-25</h2>
   <div> &nbsp;- oracle 문제 발견! - 해결! </div>  
-  <div> &nbsp;- websocket 연결 오류! </div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+  <div> &nbsp;- websocket 연결 오류! - 확인! </div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
   <div> &nbsp;- setRoom() 저장은 가능 / but 데이터가 잘못들어감! </div>
   
   
