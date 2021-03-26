@@ -64,19 +64,26 @@
   <div> &nbsp;- stAllTable -allcount 컬럼 추가 </div>
   <div> &nbsp;- 전체채팅 完 (디자인만 만지면된다)</div>
   <div> &nbsp;- MemberController - logout 작성</div>
-  <div> &nbsp;- login-post 경로깨짐 수정해야한다!!</div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+  <div> &nbsp;- login-post 경로깨짐 수정해야한다!!</div> 
   
 <h2>2021-03-18</h2>
   <div> &nbsp;- layout - memu > roomlist 출력</div>
   <div> &nbsp;- roomDetail 수정</div>
-  <div> &nbsp;- roomDetail 메시지 저장 오류! </div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+  <div> &nbsp;- roomDetail 메시지 저장 오류! </div>
   
 <h2>2021-03-25</h2>
   <div> &nbsp;- oracle 문제 발견! - 해결! </div>  
-  <div> &nbsp;- websocket 연결 오류! - 확인! </div> <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+  <div> &nbsp;- websocket 연결 오류! - 확인! </div> 
   <div> &nbsp;- setRoom() 저장은 가능 / but 데이터가 잘못들어감! </div>
   
+<h2>2021-03-26</h2>
+  <div> &nbsp;- 채팅방에서 대화내역 성공적으로 출력!</div>
+  <div> &nbsp;- login-post 경로깨짐 수정!! </div>
   
+  <div> &nbsp;- 90% 완성되었기 때문에 어떤 수정을 추가해야할지 찾아봐야한다! /div>
+
+
+
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
