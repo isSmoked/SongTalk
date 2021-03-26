@@ -56,7 +56,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				// 로그인 / 회원가입 경로 제거
 				if (ip.contains("member/login") || ip.contains("member/register") || ip == null) {
 					logger.info("로그인 / 회원가입 커팅");
-					response.sendRedirect("/songtalk/member/");
+					response.sendRedirect("songtalk/member/");
 				} else if (dest != null) {
 					logger.info("그 외의 경로 pass");
 					response.sendRedirect(dest);
@@ -64,7 +64,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				
 			} else {	// 처음화면에서 로그인했을때
 				logger.info("count < 4");
-				response.sendRedirect(dest);
+				response.sendRedirect("/songtalk");
 			}
 			
 			
