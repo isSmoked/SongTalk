@@ -267,26 +267,40 @@
 					console.log('savedMsg 저장될 채팅방 : ' + roomBno);
 					console.log('저장된 메시지 : ' + msg);
 					
-					$.ajax({
-						type : 'put',
-						url : '/songtalk/chat/tchat/' + roomBno,
-						headers : {
-							'Content-Type' : 'application/json',
-							'X-HTTP-Medhod-Override' : 'PUT'
-						},
-						data : JSON.stringify({
-							'roomContent' : msg
-						}),
-						success : function(result) {
-							console.log("2. result success : " + result);
+					
+					var url = '/songtalk/chat/tchat/roomall/' + roomBno;
+					console.log('getroom() url : ' + url);
+					$.getJSON (
+							url, function(jsonData){
+								console.log('받아온 json데이터 : ' + jsonData);
+								var msg = jsonData['roomContent'];
+								
+								console.log('roomContent : ' + msg); // 가져온 채팅내역
+								
+								$.ajax({
+									type : 'put',
+									url : '/songtalk/chat/tchat/' + roomBno,
+									headers : {
+										'Content-Type' : 'application/json',
+										'X-HTTP-Medhod-Override' : 'PUT'
+									},
+									data : JSON.stringify({
+										'roomContent' : msg
+									}),
+									success : function(result) {
+										console.log("2. result success : " + result);
+										
+										// 3. getroom 호출
+										getroom();
+									},
+									error : function (result) {
+										console.log("2. result error : " + result);
+									}
+								})
+								
+							}); // end callback(), getJSON()
 							
-							// 3. getroom 호출
-							getroom();
-						},
-						error : function (result) {
-							console.log("2. result error : " + result);
-						}
-					})
+					
 				}
 				
 				// *******************************************************************************
@@ -324,6 +338,10 @@
 					console.log('4. message get!')
 					var msgBno = bno;
 					var url = 'tchat/msgall/' + msgBno;
+					
+					const chat = document.getElementById('roomchatBlock');
+					chat.innerHTML = "";
+					
 					console.log('getmsg() url : ' + url);
 					$.getJSON (
 							url, function(jsonData){
@@ -338,7 +356,6 @@
 								
 								// cmd = roomCHAT 지움
 								if (title === '${roomVO.roomTitle}') {	// 해당 대화방에만 메시지 출력
-									const chat = document.getElementById('roomchatBlock');
 									
 									// caller + content
 									if (sender === '${loginId}') { // 내 메시지
