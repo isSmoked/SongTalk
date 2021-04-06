@@ -34,12 +34,8 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 	<!-- TODO : member/HOME과 chat/... 에서 보이도록 설정하기 -->
 	<h2>&nbsp;&nbsp;&nbsp;채팅방 목록</h2>
 	<h2>&nbsp;</h2>
-	<!-- TODO : DB 추가해서 test해보기 -->
-	
-	<!-- 글 작성 버튼 추가하기! -->
 	
 	
-	<!-- test -->
 	<div class="list-group">
 		<!-- 전체채팅 -->
 		<a href="/songtalk/chat/allDetail" class="list-group-item bg-danger text-light" style="height:50px; font-size:20px;">
