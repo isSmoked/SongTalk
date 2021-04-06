@@ -82,8 +82,15 @@
   
   <div> &nbsp;- 90% 완성되었기 때문에 어떤 수정을 추가해야할지 찾아봐야한다! </div>
 
+<h2>2021-04-06</h2>
+  <div> &nbsp;- </div>
+  <div> &nbsp;- </div>
+  <div> &nbsp;- </div>
 
-
+<h2>TODO</h2>
+  <div> &nbsp;- readcount - label 수정 </div>
+  <div> &nbsp;- 메시지에 마우스 올렸을때, 날짜 보이기</div>
+  <div> &nbsp;- 계정 profile 만들기</div>
 // -------------------------------------------------------------------------
 <h2></h2>
   <div> &nbsp;- </div>
