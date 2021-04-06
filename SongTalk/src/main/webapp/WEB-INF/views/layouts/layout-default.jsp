@@ -348,9 +348,10 @@
 								console.log('받아온 json데이터 : ' + jsonData);
 								var content = jsonData['msgContent'];
 								var sender = jsonData['msgSender'];
+								var time = jsonData['msgDate'];
 								
 								// msg 가공하기!
-								console.log('msgSender : ' + sender + ', msgContent : ' + content);
+								console.log('msgSender : ' + sender + ', msgContent : ' + content + ', msgDate :' + time);
 								
 								printMSG += sender + " : " + content;
 								
@@ -359,19 +360,29 @@
 									
 									// caller + content
 									if (sender === '${loginId}') { // 내 메시지
-										chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p>';
+										chat.innerHTML += '<div onmouseenter="addMyDate(' + "'" + time + "'" + ');"><p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + content + '&nbsp;&nbsp;&nbsp;' + '</p></div>';
 							  			console.log('sent message');
 							  			
 									} else if (sender !== '${loginId}') { // 내 메시지가 아닐때
-										chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p>';
+										chat.innerHTML += '<div onmouseenter="addSomeDate(' + "'" + time + "'" + ');"><p id="receivedMsg" style="text-align:left; font-size:15px;">' + sender + ' : ' + content + '</p></div>';
 						  				console.log('received message');
+						  				
 									}	
 									$('#roomchatBlock').scrollTop = $('#roomchatBlock').scrollHeight;
 									$('#roommsgContent').val('');
 								}
 								
-								// 채팅내역 출력
-								/*printAllchat(printMSG);*/
+
+								function addMyDate(time) {
+									chat.innerHTML += '<p id="sentMsg" style="background:lightGrey; text-color:white; text-align:right; font-size:15px;">' + time + '&nbsp;&nbsp;&nbsp;' + '</p>';
+									console.log('show Date()');
+								}; // end addDate()
+								
+								function addSomeDate(time) {
+				  					chat.innerHTML += '<p id="receivedMsg" style="text-align:left; font-size:15px;">' + time + '</p>';
+				  					console.log('show Date()');
+				  				} // end addDate()
+								
 								
 							}); // end callback(), getJSON()
 				} // end getAllchat()
