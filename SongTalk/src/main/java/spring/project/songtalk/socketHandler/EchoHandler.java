@@ -107,7 +107,7 @@ public class EchoHandler extends TextWebSocketHandler{
 						// message handle
 						String chatMsg = receiver;
 						
-						sess.sendMessage(new TextMessage("allCHAT," + caller + " ^ " + chatMsg));
+						sess.sendMessage(new TextMessage("allCHAT*" + caller + "*" + chatMsg));
 						logger.info("chatMsg(allCHAT) 정상적으로 전송 완료!!");
 					}
 				} 
