@@ -83,6 +83,7 @@
 				
 				// 수신
 				sock.onmessage = function (event) {
+					console.log('socket getmsg : ' + event.data);
 					var message = event.data.split('[*]');
 					var cmd = message[0];
 					var caller = message[1];
@@ -93,7 +94,8 @@
 					if (cmd === 'roomCHAT'){ // 대화방채팅
 						getRoom();
 					} else if (cmd === 'allCHAT') { // 전체채팅
-						
+						getall();
+						console.log('getall() 호출 : msg - ' + event);
 					}
 					
 				}
